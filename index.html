@@ -3,34 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alleanza Academy — Las capas guardan la clave de la maestría</title>
-  <meta name="description" content="Preparación de élite en español para los exámenes de licencia de seguros en EE.UU. (Vida, Salud, Accidentes y General Lines). Un método por capas para aprobar a la primera, en los 50 estados." />
-  <meta property="og:title" content="Alleanza Academy — Las capas guardan la clave de la maestría" />
-  <meta property="og:description" content="El método por capas que lleva a profesionales hispanos a aprobar su examen de licencia de seguros a la primera. 50 estados. 100% en español." />
+  <title>Alleanza Academy — Aprueba tu Examen de Seguros en tu Siguiente Intento</title>
+  <meta name="description" content="Preparación en español para los exámenes de licencia de seguros en EE.UU. (Vida, Salud, Accidentes y General Lines). Lecciones en video, clases en vivo en Dallas o por Zoom cada 2 semanas, y simulacros en condiciones de examen real. 50 estados." />
+  <meta property="og:title" content="Alleanza Academy — Aprueba tu Examen de Seguros en tu Siguiente Intento" />
+  <meta property="og:description" content="El método por capas para profesionales hispanos: video en español, clases en vivo cada 2 semanas (Dallas o Zoom) y simulacros en condiciones reales. 50 estados." />
   <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#070b14" />
+  <meta name="theme-color" content="#061431" />
 
   <!-- ============================ LIBRERÍAS (CDN) ============================ -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
+    /* Paleta oficial Alleanza Academy (manual de marca):
+       principal #7C46A6 · secundario #9959D8 · navy #061431 · claro #EAEDF3 · tipografía Inter */
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
-            sans: ['Manrope', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            display: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
           },
           colors: {
-            abyss:     '#070b14',  // fondo principal — negro azulado profundo
-            ink:       '#0b1120',  // paneles
-            strata:    '#0e1526',  // capas intermedias
-            gold:      '#c9a55e',  // oro viejo — acento principal
-            goldlight: '#e6cf9a',  // oro claro — brillos
-            brand:     '#8a5fd6',  // púrpura del escudo Alleanza
-            brandsoft: '#b394ea',  // púrpura suave
-            parchment: '#efe6d0',  // pergamino
-            mist:      '#a7adbf',  // texto secundario
-            bone:      '#e9e6dd',  // texto principal cálido
+            abyss:      '#061431',  // navy de marca — fondo principal
+            ink:        '#0a1a3d',  // paneles
+            strata:     '#0d2047',  // capas intermedias
+            viola:      '#9959d8',  // púrpura secundario — acento principal
+            violalight: '#bd9af0',  // púrpura claro — brillos
+            royal:      '#7c46a6',  // púrpura principal de marca
+            violasoft:  '#b394ea',  // púrpura suave (wordmark)
+            frost:      '#eaedf3',  // claro de marca — titulares
+            mist:       '#96a2be',  // texto secundario sobre navy
+            bone:       '#e2e7f1',  // texto principal
           },
           letterSpacing: {
             widest2: '0.35em',
@@ -45,12 +47,12 @@
   <!-- ============================ TIPOGRAFÍA ============================ -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500&display=swap" rel="stylesheet" />
 
   <style>
     /* ============================ BASE ============================ */
-    ::selection { background: rgba(201, 165, 94, .35); color: #efe6d0; }
-    body { background: #070b14; }
+    ::selection { background: rgba(153, 89, 216, .4); color: #eaedf3; }
+    body { background: #061431; }
 
     /* Grano de película sutil sobre toda la página */
     .film-grain {
@@ -64,57 +66,57 @@
       background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.5) 100%);
     }
 
-    /* Halos de luz dorada/púrpura */
-    .glow-gold   { background: radial-gradient(circle, rgba(201,165,94,.16) 0%, transparent 70%); }
-    .glow-brand  { background: radial-gradient(circle, rgba(138,95,214,.14) 0%, transparent 70%); }
+    /* Halos de luz púrpura */
+    .glow-viola  { background: radial-gradient(circle, rgba(153,89,216,.16) 0%, transparent 70%); }
+    .glow-royal  { background: radial-gradient(circle, rgba(124,70,166,.16) 0%, transparent 70%); }
 
-    /* Línea de oro fina */
-    .hairline { height: 1px; background: linear-gradient(90deg, transparent, rgba(201,165,94,.55), transparent); }
+    /* Línea púrpura fina */
+    .hairline { height: 1px; background: linear-gradient(90deg, transparent, rgba(153,89,216,.55), transparent); }
 
     /* Etiquetas en versalitas */
     .kicker {
       font-size: 11px; letter-spacing: .38em; text-transform: uppercase;
-      color: #c9a55e; font-weight: 600;
+      color: #9959d8; font-weight: 600;
     }
 
     /* ============================ NAVEGACIÓN ============================ */
     #nav { transition: background-color .4s ease, box-shadow .4s ease, border-color .4s ease; border-bottom: 1px solid transparent; }
     #nav.scrolled {
-      background: rgba(7, 11, 20, .82);
+      background: rgba(6, 20, 49, .85);
       backdrop-filter: blur(14px);
-      border-bottom-color: rgba(201,165,94,.15);
+      border-bottom-color: rgba(153,89,216,.18);
       box-shadow: 0 12px 40px -20px rgba(0,0,0,.8);
     }
 
     /* ============================ BOTONES ============================ */
-    .btn-gold {
-      background: linear-gradient(135deg, #d8b876, #b28b45);
-      color: #0b1120; font-weight: 700;
+    .btn-royal {
+      background: linear-gradient(135deg, #9959d8, #7c46a6);
+      color: #ffffff; font-weight: 700;
       transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s ease, filter .3s ease;
-      box-shadow: 0 10px 34px -12px rgba(201,165,94,.55);
+      box-shadow: 0 10px 34px -12px rgba(153,89,216,.6);
     }
-    .btn-gold:hover { transform: translateY(-2px); filter: brightness(1.07); box-shadow: 0 16px 44px -12px rgba(201,165,94,.7); }
-    .btn-gold:active { transform: translateY(0); }
+    .btn-royal:hover { transform: translateY(-2px); filter: brightness(1.1); box-shadow: 0 16px 44px -12px rgba(153,89,216,.75); }
+    .btn-royal:active { transform: translateY(0); }
 
     .btn-ghost {
-      border: 1px solid rgba(201,165,94,.45); color: #e6cf9a;
+      border: 1px solid rgba(153,89,216,.5); color: #bd9af0;
       transition: border-color .3s ease, background-color .3s ease, transform .3s cubic-bezier(.22,1,.36,1);
     }
-    .btn-ghost:hover { border-color: rgba(201,165,94,.9); background: rgba(201,165,94,.08); transform: translateY(-2px); }
+    .btn-ghost:hover { border-color: rgba(153,89,216,.95); background: rgba(153,89,216,.1); transform: translateY(-2px); }
 
     /* ============================ ESTRATOS (capas interactivas) ============================ */
-    .stratum { border: 1px solid rgba(201,165,94,.14); transition: border-color .4s ease, background-color .4s ease; }
-    .stratum:hover { border-color: rgba(201,165,94,.35); }
-    .stratum[data-open="true"] { border-color: rgba(201,165,94,.55); background: rgba(201,165,94,.04); }
+    .stratum { border: 1px solid rgba(153,89,216,.16); transition: border-color .4s ease, background-color .4s ease; }
+    .stratum:hover { border-color: rgba(153,89,216,.4); }
+    .stratum[data-open="true"] { border-color: rgba(153,89,216,.6); background: rgba(153,89,216,.05); }
     .stratum-panel { max-height: 0; overflow: hidden; opacity: 0; transition: max-height .6s cubic-bezier(.22,1,.36,1), opacity .45s ease; }
     .stratum[data-open="true"] .stratum-panel { opacity: 1; }
     .stratum-sigil { transition: transform .5s cubic-bezier(.22,1,.36,1), color .4s ease; }
-    .stratum[data-open="true"] .stratum-sigil { transform: rotate(45deg); color: #e6cf9a; }
+    .stratum[data-open="true"] .stratum-sigil { transform: rotate(45deg); color: #bd9af0; }
     .stratum-depth { transition: width .8s cubic-bezier(.22,1,.36,1); }
     .stratum[data-open="true"] .stratum-depth { width: 100%; }
 
     /* ============================ FAQ ============================ */
-    .faq-item { border-bottom: 1px solid rgba(201,165,94,.12); }
+    .faq-item { border-bottom: 1px solid rgba(153,89,216,.15); }
     .faq-panel { max-height: 0; overflow: hidden; opacity: 0; transition: max-height .5s cubic-bezier(.22,1,.36,1), opacity .4s ease; }
     .faq-item[data-open="true"] .faq-panel { opacity: 1; }
     .faq-cross { transition: transform .4s cubic-bezier(.22,1,.36,1); }
@@ -124,8 +126,8 @@
     .map-node { transition: opacity .6s ease, transform .6s cubic-bezier(.22,1,.36,1); }
     .map-node .node-seal { transition: box-shadow .6s ease, border-color .6s ease, color .6s ease; }
     .map-node.lit .node-seal {
-      border-color: rgba(201,165,94,.9); color: #e6cf9a;
-      box-shadow: 0 0 34px -4px rgba(201,165,94,.55), inset 0 0 14px rgba(201,165,94,.2);
+      border-color: rgba(153,89,216,.95); color: #bd9af0;
+      box-shadow: 0 0 34px -4px rgba(153,89,216,.6), inset 0 0 14px rgba(153,89,216,.22);
     }
 
     /* ============================ CITAS DEL FOOTER ============================ */
@@ -133,7 +135,7 @@
     .quote-slide.active { opacity: 1; position: relative; }
 
     /* ============================ ACCESIBILIDAD & MOVIMIENTO ============================ */
-    a:focus-visible, button:focus-visible { outline: 2px solid #c9a55e; outline-offset: 4px; border-radius: 2px; }
+    a:focus-visible, button:focus-visible { outline: 2px solid #9959d8; outline-offset: 4px; border-radius: 2px; }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -144,10 +146,13 @@
 
     /* Números-marca de agua de cada capa */
     .watermark {
-      font-family: "Cormorant Garamond", serif; font-weight: 600; line-height: 1;
-      color: transparent; -webkit-text-stroke: 1px rgba(201,165,94,.14);
+      font-family: "Inter", sans-serif; font-weight: 200; line-height: 1;
+      color: transparent; -webkit-text-stroke: 1px rgba(153,89,216,.18);
       user-select: none; pointer-events: none;
     }
+
+    /* Titulares display: Inter fino y apretado, look cinematográfico */
+    .font-display { letter-spacing: -0.025em; }
   </style>
 </head>
 
@@ -166,32 +171,32 @@
       <a href="#" class="flex items-center gap-3" aria-label="Alleanza Academy — inicio">
         <!-- Emblema del escudo (recreación vectorial del logo oficial) -->
         <svg viewBox="0 0 120 150" class="w-9 h-11" aria-hidden="true">
-          <g fill="#8a5fd6">
+          <g fill="#9959d8">
             <path d="M60 0 l4.7 9.5 10.5 1.5 -7.6 7.4 1.8 10.4 -9.4 -4.9 -9.4 4.9 1.8 -10.4 -7.6 -7.4 10.5 -1.5 Z"/>
             <path d="M22 16 l3.2 6.4 7 1 -5 5 1.2 7 -6.4 -3.3 -6.3 3.3 1.2 -7 -5.1 -5 7 -1 Z"/>
             <path d="M98 16 l3.2 6.4 7 1 -5 5 1.2 7 -6.4 -3.3 -6.3 3.3 1.2 -7 -5.1 -5 7 -1 Z"/>
           </g>
           <path d="M60 26 C53 36 38 42 20 44 L20 84 C20 110 38 130 60 142 C82 130 100 110 100 84 L100 44 C82 42 67 36 60 26 Z"
-                fill="#10172e" stroke="#8a5fd6" stroke-width="6" stroke-linejoin="round"/>
-          <g fill="#f2f0e9">
+                fill="#0a1a3d" stroke="#9959d8" stroke-width="6" stroke-linejoin="round"/>
+          <g fill="#ffffff">
             <path d="M60 58 L74 100 Q60 92 46 100 Z"/>
-            <path d="M60 84 L66 100 L54 100 Z" fill="#10172e"/>
+            <path d="M60 84 L66 100 L54 100 Z" fill="#0a1a3d"/>
             <path d="M34 108 Q46 84 54 76 Q49 96 48 110 Q40 105 34 108 Z"/>
             <path d="M86 108 Q74 84 66 76 Q71 96 72 110 Q80 105 86 108 Z"/>
           </g>
         </svg>
         <span class="leading-none">
           <span class="block font-extrabold tracking-[0.14em] text-bone text-[15px]">ALLEANZA</span>
-          <span class="block text-[9px] tracking-widest2 text-brandsoft font-semibold mt-1">ACADEMY</span>
+          <span class="block text-[9px] tracking-widest2 text-violasoft font-semibold mt-1">ACADEMY</span>
         </span>
       </a>
 
       <nav class="hidden md:flex items-center gap-9 text-[12px] tracking-[0.22em] uppercase text-mist" aria-label="Navegación principal">
-        <a href="#capa-1" class="hover:text-goldlight transition-colors duration-300">El Método</a>
-        <a href="#capas" class="hover:text-goldlight transition-colors duration-300">Las Capas</a>
-        <a href="#mapa" class="hover:text-goldlight transition-colors duration-300">El Mapa</a>
-        <a href="#voces" class="hover:text-goldlight transition-colors duration-300">Voces</a>
-        <a href="#inversion" class="hover:text-goldlight transition-colors duration-300">Inversión</a>
+        <a href="#capa-1" class="hover:text-violalight transition-colors duration-300">El Método</a>
+        <a href="#capas" class="hover:text-violalight transition-colors duration-300">Las Capas</a>
+        <a href="#mapa" class="hover:text-violalight transition-colors duration-300">El Mapa</a>
+        <a href="#cohorte" class="hover:text-violalight transition-colors duration-300">La Cohorte</a>
+        <a href="#inversion" class="hover:text-violalight transition-colors duration-300">Inversión</a>
       </nav>
 
       <a href="#inversion" class="btn-ghost rounded-none px-6 h-11 inline-flex items-center text-[12px] tracking-[0.22em] uppercase font-semibold">
@@ -209,27 +214,27 @@
       <!-- Núcleo de conocimiento (canvas interactivo) -->
       <canvas id="core" class="absolute inset-0 w-full h-full" aria-hidden="true"></canvas>
 
-      <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[900px] h-[500px] glow-gold blur-2xl" aria-hidden="true"></div>
-      <div class="absolute bottom-0 -right-40 w-[600px] h-[600px] glow-brand blur-2xl" aria-hidden="true"></div>
+      <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[900px] h-[500px] glow-viola blur-2xl" aria-hidden="true"></div>
+      <div class="absolute bottom-0 -right-40 w-[600px] h-[600px] glow-royal blur-2xl" aria-hidden="true"></div>
 
       <div class="relative max-w-6xl mx-auto px-6 pt-36 pb-28 w-full">
         <div class="max-w-3xl">
           <p data-hero="1" class="kicker mb-8">Alleanza Academy · Licencias de seguros · 50 estados</p>
 
-          <h1 data-hero="2" class="font-serif text-[44px] leading-[1.06] sm:text-6xl md:text-7xl font-medium text-parchment">
-            Las capas guardan<br />
-            <span class="italic text-goldlight">la clave de la maestría.</span>
+          <h1 data-hero="2" class="font-display text-[38px] leading-[1.1] sm:text-5xl md:text-6xl font-light text-frost">
+            Aprueba tu Examen de Licencia de Seguros
+            <span class="text-violalight font-medium">en tu Siguiente Intento</span>
+            — Aunque Trabajes de Tiempo Completo
           </h1>
 
           <p data-hero="3" class="mt-8 text-mist text-lg md:text-xl leading-relaxed max-w-xl font-light">
-            No se trata de estudiarlo todo. Se trata de excavar lo correcto.
-            El método que lleva a profesionales hispanos a aprobar su examen de
-            licencia de seguros <span class="text-bone font-medium">a la primera</span> —
-            en español, en cualquiera de los 50 estados.
+            Lecciones en video en español + 100+ preguntas simuladas + una app de quiz que se siente
+            <span class="text-bone font-medium">exactamente como el examen real</span>.
+            Diseñado para hispanos ocupados, en cualquiera de los 50 estados.
           </p>
 
           <div data-hero="4" class="mt-12 flex flex-col sm:flex-row gap-5 sm:items-center">
-            <a href="#inversion" class="btn-gold inline-flex items-center justify-center px-10 h-[54px] text-[13px] tracking-[0.22em] uppercase">
+            <a href="#inversion" class="btn-royal inline-flex items-center justify-center px-10 h-[54px] text-[13px] tracking-[0.22em] uppercase">
               Inscríbete ahora
             </a>
             <a href="#capa-1" class="btn-ghost inline-flex items-center justify-center px-8 h-[54px] text-[13px] tracking-[0.22em] uppercase">
@@ -238,11 +243,11 @@
           </div>
 
           <div data-hero="5" class="mt-14 flex flex-wrap gap-x-10 gap-y-3 text-[11px] tracking-[0.28em] uppercase text-mist/80">
-            <span>92% aprueba a la primera</span>
-            <span class="hidden sm:inline text-gold/50">·</span>
-            <span>1,200+ profesionales</span>
-            <span class="hidden sm:inline text-gold/50">·</span>
             <span>100% en español</span>
+            <span class="hidden sm:inline text-viola/50">·</span>
+            <span>Clases en vivo cada 2 semanas</span>
+            <span class="hidden sm:inline text-viola/50">·</span>
+            <span>Cohorte fundadora · 50 lugares</span>
           </div>
         </div>
       </div>
@@ -250,7 +255,7 @@
       <!-- Indicador de descenso -->
       <div data-hero="6" class="absolute bottom-9 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 text-mist/70">
         <span class="text-[10px] tracking-[0.4em] uppercase">Desliza para excavar</span>
-        <span class="block w-px h-12 bg-gradient-to-b from-gold/70 to-transparent"></span>
+        <span class="block w-px h-12 bg-gradient-to-b from-viola/70 to-transparent"></span>
       </div>
     </section>
 
@@ -264,14 +269,14 @@
 
       <div class="relative max-w-6xl mx-auto px-6">
         <p class="kicker mb-6" data-reveal>Capa 01 — La superficie</p>
-        <h2 class="font-serif text-4xl md:text-6xl font-medium text-parchment max-w-3xl leading-[1.1]" data-reveal>
-          Casi todos estudian<br /><span class="italic text-goldlight">en la superficie.</span>
+        <h2 class="font-display text-4xl md:text-6xl font-light text-frost max-w-3xl leading-[1.1]" data-reveal>
+          Casi todos estudian<br /><span class="italic text-violalight">en la superficie.</span>
         </h2>
 
         <div class="mt-16 grid lg:grid-cols-[.85fr_1.15fr] gap-14 lg:gap-20 items-start">
           <div data-reveal>
-            <p class="font-serif text-[110px] md:text-[150px] leading-none text-goldlight font-semibold">70<span class="text-gold">%</span></p>
-            <div class="hairline my-6 !bg-gradient-to-r !from-gold/60 !to-transparent"></div>
+            <p class="font-display text-[110px] md:text-[150px] leading-none text-violalight font-semibold">70<span class="text-viola">%</span></p>
+            <div class="hairline my-6 !bg-gradient-to-r !from-viola/60 !to-transparent"></div>
             <p class="text-mist text-lg leading-relaxed font-light">
               de los candidatos a la licencia de seguros en EE.UU.
               <span class="text-bone">fracasan en su primer intento</span> — y pierden los ~$150 del examen.
@@ -282,20 +287,20 @@
             <p class="text-mist text-lg leading-relaxed font-light" data-reveal>
               No fracasan por falta de inteligencia ni de disciplina. Fracasan porque estudian
               <em class="text-bone not-italic font-medium">todo</em> en lugar de estudiar
-              <em class="text-goldlight not-italic font-medium">lo correcto</em>: libros de 600 páginas,
+              <em class="text-violalight not-italic font-medium">lo correcto</em>: libros de 600 páginas,
               cursos genéricos en inglés, regulaciones de estados que no son el suyo.
             </p>
             <div class="grid sm:grid-cols-3 gap-4 pt-4">
-              <div class="border border-gold/10 bg-ink/60 px-6 py-7" data-reveal>
-                <p class="font-serif text-2xl text-parchment mb-2">Volumen</p>
+              <div class="border border-viola/10 bg-ink/60 px-6 py-7" data-reveal>
+                <p class="font-display text-2xl text-frost mb-2">Volumen</p>
                 <p class="text-sm text-mist leading-relaxed font-light">Manuales interminables que nadie termina, escritos para todos y para nadie.</p>
               </div>
-              <div class="border border-gold/10 bg-ink/60 px-6 py-7" data-reveal data-reveal-delay="0.12">
-                <p class="font-serif text-2xl text-parchment mb-2">Ruido</p>
+              <div class="border border-viola/10 bg-ink/60 px-6 py-7" data-reveal data-reveal-delay="0.12">
+                <p class="font-display text-2xl text-frost mb-2">Ruido</p>
                 <p class="text-sm text-mist leading-relaxed font-light">Videos fragmentados y guías gratuitas desactualizadas que mezclan lo esencial con lo irrelevante.</p>
               </div>
-              <div class="border border-gold/10 bg-ink/60 px-6 py-7" data-reveal data-reveal-delay="0.24">
-                <p class="font-serif text-2xl text-parchment mb-2">Idioma</p>
+              <div class="border border-viola/10 bg-ink/60 px-6 py-7" data-reveal data-reveal-delay="0.24">
+                <p class="font-display text-2xl text-frost mb-2">Idioma</p>
                 <p class="text-sm text-mist leading-relaxed font-light">Material en inglés técnico, sin nadie que responda tus dudas en español.</p>
               </div>
             </div>
@@ -314,12 +319,12 @@
     ============================================================ -->
     <section id="capa-2" class="relative py-28 md:py-40 overflow-hidden bg-ink/40">
       <span class="watermark absolute -top-6 left-2 md:left-10 text-[180px] md:text-[300px]" data-parallax="-10" aria-hidden="true">02</span>
-      <div class="absolute top-1/3 -left-40 w-[520px] h-[520px] glow-brand blur-2xl" aria-hidden="true"></div>
+      <div class="absolute top-1/3 -left-40 w-[520px] h-[520px] glow-royal blur-2xl" aria-hidden="true"></div>
 
       <div class="relative max-w-6xl mx-auto px-6">
         <p class="kicker mb-6" data-reveal>Capa 02 — El origen del método</p>
-        <h2 class="font-serif text-4xl md:text-6xl font-medium text-parchment max-w-3xl leading-[1.1]" data-reveal>
-          Dos noches.<br /><span class="italic text-goldlight">Primer intento. Aprobado.</span>
+        <h2 class="font-display text-4xl md:text-6xl font-light text-frost max-w-3xl leading-[1.1]" data-reveal>
+          Dos noches.<br /><span class="italic text-violalight">Primer intento. Aprobado.</span>
         </h2>
 
         <div class="mt-16 grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
@@ -335,24 +340,24 @@
               Saqué <span class="text-bone font-medium">72 puntos</span>. Aprobé a la primera.
             </p>
 
-            <blockquote class="border-l border-gold/60 pl-8 py-2 my-10" data-reveal>
-              <p class="font-serif text-2xl md:text-[28px] leading-snug text-parchment italic">
+            <blockquote class="border-l border-viola/60 pl-8 py-2 my-10" data-reveal>
+              <p class="font-display text-2xl md:text-[28px] leading-snug text-frost italic">
                 “Estudié para aprobar,<br />no solo para aprender.”
               </p>
-              <footer class="mt-4 text-[11px] tracking-[0.3em] uppercase text-gold">— El principio del método Alleanza</footer>
+              <footer class="mt-4 text-[11px] tracking-[0.3em] uppercase text-viola">— El principio del método Alleanza</footer>
             </blockquote>
 
             <div class="grid grid-cols-3 gap-4 text-center" data-reveal>
-              <div class="border border-gold/10 py-5">
-                <p class="font-serif text-3xl text-goldlight">2</p>
+              <div class="border border-viola/10 py-5">
+                <p class="font-display text-3xl text-violalight">2</p>
                 <p class="text-[10px] tracking-[0.25em] uppercase text-mist mt-1">noches de estudio</p>
               </div>
-              <div class="border border-gold/10 py-5">
-                <p class="font-serif text-3xl text-goldlight">72</p>
+              <div class="border border-viola/10 py-5">
+                <p class="font-display text-3xl text-violalight">72</p>
                 <p class="text-[10px] tracking-[0.25em] uppercase text-mist mt-1">puntos</p>
               </div>
-              <div class="border border-gold/10 py-5">
-                <p class="font-serif text-3xl text-goldlight">1<span class="text-xl align-top">er</span></p>
+              <div class="border border-viola/10 py-5">
+                <p class="font-display text-3xl text-violalight">1<span class="text-xl align-top">er</span></p>
                 <p class="text-[10px] tracking-[0.25em] uppercase text-mist mt-1">intento</p>
               </div>
             </div>
@@ -360,7 +365,7 @@
 
           <!-- Sala de proyección: video de Vimeo -->
           <figure data-reveal data-reveal-delay="0.15">
-            <div class="relative border border-gold/25 p-2 md:p-3 bg-abyss shadow-[0_40px_90px_-30px_rgba(0,0,0,.9)]">
+            <div class="relative border border-viola/25 p-2 md:p-3 bg-abyss shadow-[0_40px_90px_-30px_rgba(0,0,0,.9)]">
               <div style="padding:56.25% 0 0 0;position:relative;">
                 <iframe src="https://player.vimeo.com/video/1207081306?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
                         frameborder="0"
@@ -372,7 +377,7 @@
             </div>
             <figcaption class="mt-5 flex items-center justify-between text-[11px] tracking-[0.28em] uppercase text-mist">
               <span>La historia · 2 minutos</span>
-              <span class="text-gold">Jesús E. Guerra · Lic. en Texas</span>
+              <span class="text-viola">Jesús E. Guerra · Lic. en Texas</span>
             </figcaption>
           </figure>
         </div>
@@ -389,8 +394,8 @@
 
       <div class="relative max-w-4xl mx-auto px-6">
         <p class="kicker mb-6 text-center" data-reveal>Capa 03 — La excavación</p>
-        <h2 class="font-serif text-4xl md:text-6xl font-medium text-parchment text-center leading-[1.1]" data-reveal>
-          Cuatro capas.<br /><span class="italic text-goldlight">Un solo objetivo: aprobar.</span>
+        <h2 class="font-display text-4xl md:text-6xl font-light text-frost text-center leading-[1.1]" data-reveal>
+          Cuatro capas.<br /><span class="italic text-violalight">Un solo objetivo: aprobar.</span>
         </h2>
         <p class="mt-8 text-center text-mist text-lg font-light max-w-2xl mx-auto leading-relaxed" data-reveal>
           El programa completo — Vida, Salud, Accidentes y General Lines — organizado como una excavación:
@@ -404,25 +409,26 @@
           <div class="stratum bg-strata/70" data-open="false" data-reveal>
             <h3>
               <button type="button" class="stratum-btn w-full flex items-center gap-6 px-7 md:px-10 py-7 text-left" aria-expanded="false" aria-controls="stratum-1">
-                <span class="font-serif text-gold/70 text-xl w-10 shrink-0">I</span>
+                <span class="font-display text-viola/70 text-xl w-10 shrink-0">I</span>
                 <span class="flex-1">
-                  <span class="block font-serif text-2xl md:text-3xl text-parchment">Los Conceptos</span>
+                  <span class="block font-display text-2xl md:text-3xl text-frost">Los Conceptos</span>
                   <span class="block text-[11px] tracking-[0.28em] uppercase text-mist mt-1.5">El lenguaje del examen</span>
                 </span>
-                <span class="stratum-sigil text-gold text-2xl font-light shrink-0" aria-hidden="true">+</span>
+                <span class="stratum-sigil text-viola text-2xl font-light shrink-0" aria-hidden="true">+</span>
               </button>
             </h3>
             <div id="stratum-1" class="stratum-panel" role="region">
               <div class="px-7 md:px-10 pb-9 md:pl-[104px]">
-                <div class="stratum-depth h-px w-0 bg-gradient-to-r from-gold/60 to-transparent mb-6"></div>
+                <div class="stratum-depth h-px w-0 bg-gradient-to-r from-viola/60 to-transparent mb-6"></div>
                 <p class="text-mist leading-relaxed font-light mb-5">
                   Más de <span class="text-bone">50 lecciones en video, 100% en español</span> (12–15 horas en total).
                   Cada una dura 10–15 minutos y va directo a lo que el examen realmente pregunta — sin relleno.
                 </p>
                 <ul class="space-y-2.5 text-sm text-mist font-light">
-                  <li class="flex gap-3"><span class="text-gold mt-px">—</span>Guías PDF descargables por lección</li>
-                  <li class="flex gap-3"><span class="text-gold mt-px">—</span>Subtítulos en inglés disponibles</li>
-                  <li class="flex gap-3"><span class="text-gold mt-px">—</span>Flashcards bilingües: 200+ términos español ↔ inglés</li>
+                  <li class="flex gap-3"><span class="text-viola mt-px">—</span><span><strong class="text-bone font-medium">Clases en vivo cada dos semanas</strong> — presenciales en Dallas o por Zoom en vivo, para resolver tus dudas en tiempo real</span></li>
+                  <li class="flex gap-3"><span class="text-viola mt-px">—</span>Guías PDF descargables por lección</li>
+                  <li class="flex gap-3"><span class="text-viola mt-px">—</span>Subtítulos en inglés disponibles</li>
+                  <li class="flex gap-3"><span class="text-viola mt-px">—</span>Flashcards bilingües: 200+ términos español ↔ inglés</li>
                 </ul>
               </div>
             </div>
@@ -432,25 +438,25 @@
           <div class="stratum bg-strata/70" data-open="false" data-reveal data-reveal-delay="0.08">
             <h3>
               <button type="button" class="stratum-btn w-full flex items-center gap-6 px-7 md:px-10 py-7 text-left" aria-expanded="false" aria-controls="stratum-2">
-                <span class="font-serif text-gold/70 text-xl w-10 shrink-0">II</span>
+                <span class="font-display text-viola/70 text-xl w-10 shrink-0">II</span>
                 <span class="flex-1">
-                  <span class="block font-serif text-2xl md:text-3xl text-parchment">Las Regulaciones</span>
+                  <span class="block font-display text-2xl md:text-3xl text-frost">Las Regulaciones</span>
                   <span class="block text-[11px] tracking-[0.28em] uppercase text-mist mt-1.5">Lo que cambia según tu estado</span>
                 </span>
-                <span class="stratum-sigil text-gold text-2xl font-light shrink-0" aria-hidden="true">+</span>
+                <span class="stratum-sigil text-viola text-2xl font-light shrink-0" aria-hidden="true">+</span>
               </button>
             </h3>
             <div id="stratum-2" class="stratum-panel" role="region">
               <div class="px-7 md:px-10 pb-9 md:pl-[104px]">
-                <div class="stratum-depth h-px w-0 bg-gradient-to-r from-gold/60 to-transparent mb-6"></div>
+                <div class="stratum-depth h-px w-0 bg-gradient-to-r from-viola/60 to-transparent mb-6"></div>
                 <p class="text-mist leading-relaxed font-light mb-5">
                   Cada estado tiene sus énfasis, términos y escenarios. El programa cubre el tronco común nacional
                   y señala <span class="text-bone">las regulaciones específicas de tu estado</span> cuando aplican.
                 </p>
                 <ul class="space-y-2.5 text-sm text-mist font-light">
-                  <li class="flex gap-3"><span class="text-gold mt-px">—</span>Módulos con énfasis estatales para los 50 estados</li>
-                  <li class="flex gap-3"><span class="text-gold mt-px">—</span>Contenido actualizado cuando cambian las regulaciones — sin costo extra</li>
-                  <li class="flex gap-3"><span class="text-gold mt-px">—</span>Orientación sobre los requisitos de licencia de tu estado</li>
+                  <li class="flex gap-3"><span class="text-viola mt-px">—</span>Módulos con énfasis estatales para los 50 estados</li>
+                  <li class="flex gap-3"><span class="text-viola mt-px">—</span>Contenido actualizado cuando cambian las regulaciones — sin costo extra</li>
+                  <li class="flex gap-3"><span class="text-viola mt-px">—</span>Orientación sobre los requisitos de licencia de tu estado</li>
                 </ul>
               </div>
             </div>
@@ -460,25 +466,25 @@
           <div class="stratum bg-strata/70" data-open="false" data-reveal data-reveal-delay="0.16">
             <h3>
               <button type="button" class="stratum-btn w-full flex items-center gap-6 px-7 md:px-10 py-7 text-left" aria-expanded="false" aria-controls="stratum-3">
-                <span class="font-serif text-gold/70 text-xl w-10 shrink-0">III</span>
+                <span class="font-display text-viola/70 text-xl w-10 shrink-0">III</span>
                 <span class="flex-1">
-                  <span class="block font-serif text-2xl md:text-3xl text-parchment">La Estrategia</span>
+                  <span class="block font-display text-2xl md:text-3xl text-frost">La Estrategia</span>
                   <span class="block text-[11px] tracking-[0.28em] uppercase text-mist mt-1.5">Estudiar para aprobar</span>
                 </span>
-                <span class="stratum-sigil text-gold text-2xl font-light shrink-0" aria-hidden="true">+</span>
+                <span class="stratum-sigil text-viola text-2xl font-light shrink-0" aria-hidden="true">+</span>
               </button>
             </h3>
             <div id="stratum-3" class="stratum-panel" role="region">
               <div class="px-7 md:px-10 pb-9 md:pl-[104px]">
-                <div class="stratum-depth h-px w-0 bg-gradient-to-r from-gold/60 to-transparent mb-6"></div>
+                <div class="stratum-depth h-px w-0 bg-gradient-to-r from-viola/60 to-transparent mb-6"></div>
                 <p class="text-mist leading-relaxed font-light mb-5">
                   La capa que casi nadie enseña: <span class="text-bone">qué cae en el examen y qué no</span>.
                   Prioridades claras para invertir tus horas donde rinden.
                 </p>
                 <ul class="space-y-2.5 text-sm text-mist font-light">
-                  <li class="flex gap-3"><span class="text-gold mt-px">—</span>Guía “Lo que siempre viene en el examen” — los temas de mayor frecuencia en una página</li>
-                  <li class="flex gap-3"><span class="text-gold mt-px">—</span>Banco de 100+ preguntas organizadas por tema y dificultad</li>
-                  <li class="flex gap-3"><span class="text-gold mt-px">—</span>Explicaciones de por qué cada respuesta es correcta o incorrecta</li>
+                  <li class="flex gap-3"><span class="text-viola mt-px">—</span>Guía “Lo que siempre viene en el examen” — los temas de mayor frecuencia en una página</li>
+                  <li class="flex gap-3"><span class="text-viola mt-px">—</span>Banco de 100+ preguntas organizadas por tema y dificultad</li>
+                  <li class="flex gap-3"><span class="text-viola mt-px">—</span>Explicaciones de por qué cada respuesta es correcta o incorrecta</li>
                 </ul>
               </div>
             </div>
@@ -488,28 +494,50 @@
           <div class="stratum bg-strata/70" data-open="false" data-reveal data-reveal-delay="0.24">
             <h3>
               <button type="button" class="stratum-btn w-full flex items-center gap-6 px-7 md:px-10 py-7 text-left" aria-expanded="false" aria-controls="stratum-4">
-                <span class="font-serif text-gold/70 text-xl w-10 shrink-0">IV</span>
+                <span class="font-display text-viola/70 text-xl w-10 shrink-0">IV</span>
                 <span class="flex-1">
-                  <span class="block font-serif text-2xl md:text-3xl text-parchment">La Aplicación</span>
+                  <span class="block font-display text-2xl md:text-3xl text-frost">La Aplicación</span>
                   <span class="block text-[11px] tracking-[0.28em] uppercase text-mist mt-1.5">El núcleo: practicar como en el examen real</span>
                 </span>
-                <span class="stratum-sigil text-gold text-2xl font-light shrink-0" aria-hidden="true">+</span>
+                <span class="stratum-sigil text-viola text-2xl font-light shrink-0" aria-hidden="true">+</span>
               </button>
             </h3>
             <div id="stratum-4" class="stratum-panel" role="region">
               <div class="px-7 md:px-10 pb-9 md:pl-[104px]">
-                <div class="stratum-depth h-px w-0 bg-gradient-to-r from-gold/60 to-transparent mb-6"></div>
+                <div class="stratum-depth h-px w-0 bg-gradient-to-r from-viola/60 to-transparent mb-6"></div>
                 <p class="text-mist leading-relaxed font-light mb-5">
-                  Una <span class="text-bone">app de quiz con repetición espaciada</span> que replica la interfaz
-                  y el tiempo del examen real, te diagnostica y te dice exactamente qué reforzar.
+                  Practica en <span class="text-bone">condiciones similares al examen real</span>: misma interfaz, mismo reloj,
+                  misma presión. Al terminar cada simulacro sabes <span class="text-bone">exactamente qué fallaste</span>,
+                  te enfocas en eso y recuperas los puntos perdidos — los que deciden si apruebas.
                 </p>
                 <ul class="space-y-2.5 text-sm text-mist font-light">
-                  <li class="flex gap-3"><span class="text-gold mt-px">—</span>Simulacros completos cronometrados</li>
-                  <li class="flex gap-3"><span class="text-gold mt-px">—</span>Diagnóstico instantáneo por tema: sabes dónde estás débil</li>
-                  <li class="flex gap-3"><span class="text-gold mt-px">—</span>Q&amp;A directo con Jesus, en español, respuesta en menos de 24 horas</li>
+                  <li class="flex gap-3"><span class="text-viola mt-px">—</span>Simulacros completos cronometrados en condiciones de examen</li>
+                  <li class="flex gap-3"><span class="text-viola mt-px">—</span>Diagnóstico por tema: qué fallaste y dónde recuperar puntos</li>
+                  <li class="flex gap-3"><span class="text-viola mt-px">—</span>App de quiz con repetición espaciada que te recuerda cuándo repasar</li>
+                  <li class="flex gap-3"><span class="text-viola mt-px">—</span>Q&amp;A directo con Jesus, en español, respuesta en menos de 24 horas</li>
                 </ul>
               </div>
             </div>
+          </div>
+        </div>
+
+        <!-- Destacados: en vivo + condiciones reales -->
+        <div class="mt-14 grid md:grid-cols-2 gap-6">
+          <div class="border border-viola/25 bg-ink/60 p-9 md:p-10" data-reveal>
+            <p class="kicker mb-4">En vivo · Cada dos semanas</p>
+            <h3 class="font-display text-2xl md:text-3xl font-light text-frost leading-snug">Clases en vivo, <span class="text-violalight font-medium">en Dallas o por Zoom.</span></h3>
+            <p class="mt-4 text-mist font-light leading-relaxed">
+              No estudias solo. Cada dos semanas te reúnes con tu cohorte y con Jesus — presencialmente
+              en Dallas o por Zoom en vivo — para resolver dudas, repasar los temas difíciles y mantener el ritmo.
+            </p>
+          </div>
+          <div class="border border-viola/25 bg-ink/60 p-9 md:p-10" data-reveal data-reveal-delay="0.12">
+            <p class="kicker mb-4">Simulacro · Condiciones reales</p>
+            <h3 class="font-display text-2xl md:text-3xl font-light text-frost leading-snug">Falla aquí, <span class="text-violalight font-medium">no en el examen.</span></h3>
+            <p class="mt-4 text-mist font-light leading-relaxed">
+              Practicas bajo las mismas condiciones del examen real. Cada simulacro te muestra con claridad
+              qué fallaste, para que te enfoques ahí, recuperes los puntos perdidos y llegues al examen sabiendo que estás listo.
+            </p>
           </div>
         </div>
       </div>
@@ -521,32 +549,33 @@
          EL MAPA DE LA MAESTRÍA (recorrido)
     ============================================================ -->
     <section id="mapa" class="relative py-28 md:py-40 overflow-hidden bg-ink/40">
-      <div class="absolute top-0 -right-48 w-[560px] h-[560px] glow-gold blur-2xl" aria-hidden="true"></div>
+      <div class="absolute top-0 -right-48 w-[560px] h-[560px] glow-viola blur-2xl" aria-hidden="true"></div>
 
       <div class="relative max-w-4xl mx-auto px-6">
         <p class="kicker mb-6 text-center" data-reveal>El mapa de la maestría</p>
-        <h2 class="font-serif text-4xl md:text-6xl font-medium text-parchment text-center leading-[1.1]" data-reveal>
-          Del aspirante confundido<br /><span class="italic text-goldlight">al profesional licenciado.</span>
+        <h2 class="font-display text-4xl md:text-6xl font-light text-frost text-center leading-[1.1]" data-reveal>
+          Del aspirante confundido<br /><span class="italic text-violalight">al profesional licenciado.</span>
         </h2>
 
         <!-- Sendero -->
         <div class="relative mt-20 pl-10 md:pl-0">
           <!-- Línea del sendero -->
           <svg class="absolute left-[13px] md:left-1/2 md:-translate-x-1/2 top-0 h-full w-[2px]" preserveAspectRatio="none" viewBox="0 0 2 100" aria-hidden="true">
-            <line x1="1" y1="0" x2="1" y2="100" stroke="rgba(201,165,94,.15)" stroke-width="2" />
-            <line id="map-path" x1="1" y1="0" x2="1" y2="100" stroke="rgba(201,165,94,.85)" stroke-width="2"
+            <line x1="1" y1="0" x2="1" y2="100" stroke="rgba(153,89,216,.18)" stroke-width="2" />
+            <line id="map-path" x1="1" y1="0" x2="1" y2="100" stroke="rgba(153,89,216,.9)" stroke-width="2"
                   pathLength="100" stroke-dasharray="100" stroke-dashoffset="100" />
           </svg>
 
           <!-- Nodo 1 -->
           <div class="map-node relative md:grid md:grid-cols-2 md:gap-20 pb-20">
-            <span class="node-seal absolute -left-10 md:left-1/2 md:-translate-x-1/2 top-1 w-7 h-7 rounded-full border border-gold/40 bg-abyss flex items-center justify-center text-[10px] font-serif text-gold/70">I</span>
+            <span class="node-seal absolute -left-10 md:left-1/2 md:-translate-x-1/2 top-1 w-7 h-7 rounded-full border border-viola/40 bg-abyss flex items-center justify-center text-[10px] font-display text-viola/70">I</span>
             <div class="md:text-right md:pr-2">
-              <h3 class="font-serif text-3xl text-parchment">El aspirante</h3>
+              <h3 class="font-display text-3xl text-frost">El aspirante</h3>
               <p class="text-[11px] tracking-[0.28em] uppercase text-mist mt-2 mb-4">Semana 0</p>
               <p class="text-mist font-light leading-relaxed">
-                Trabajas de tiempo completo. Tienes familia. Miras el manual de 600 páginas
-                y no sabes ni por dónde empezar. El examen cuesta $150 y el 70% lo reprueba.
+                Trabajas de tiempo completo. Tienes familia. Quizá ya intentaste el examen una vez
+                con material genérico. El examen cuesta $150, el 70% lo reprueba, y el manual
+                de 600 páginas no te dice por dónde empezar.
               </p>
             </div>
             <div aria-hidden="true"></div>
@@ -554,46 +583,47 @@
 
           <!-- Nodo 2 -->
           <div class="map-node relative md:grid md:grid-cols-2 md:gap-20 pb-20">
-            <span class="node-seal absolute -left-10 md:left-1/2 md:-translate-x-1/2 top-1 w-7 h-7 rounded-full border border-gold/40 bg-abyss flex items-center justify-center text-[10px] font-serif text-gold/70">II</span>
+            <span class="node-seal absolute -left-10 md:left-1/2 md:-translate-x-1/2 top-1 w-7 h-7 rounded-full border border-viola/40 bg-abyss flex items-center justify-center text-[10px] font-display text-viola/70">II</span>
             <div class="hidden md:block" aria-hidden="true"></div>
             <div class="md:pl-2">
-              <h3 class="font-serif text-3xl text-parchment">El estratega</h3>
+              <h3 class="font-display text-3xl text-frost">El estratega</h3>
               <p class="text-[11px] tracking-[0.28em] uppercase text-mist mt-2 mb-4">Semanas 1–3</p>
               <p class="text-mist font-light leading-relaxed">
-                Una lección de 12 minutos en el almuerzo. Un quiz que te dice exactamente dónde estás débil.
-                Flashcards en el trayecto. 25–30 minutos al día, 4–5 días por semana — desde el celular.
+                Una lección de 12 minutos en el almuerzo. Clase en vivo con tu cohorte cada dos semanas —
+                en Dallas o por Zoom. Simulacros en condiciones reales que te dicen exactamente qué fallaste
+                y dónde recuperar puntos. 25–30 minutos al día, desde el celular.
               </p>
             </div>
           </div>
 
           <!-- Nodo 3 -->
           <div class="map-node relative md:grid md:grid-cols-2 md:gap-20 pb-4">
-            <span class="node-seal absolute -left-10 md:left-1/2 md:-translate-x-1/2 top-1 w-7 h-7 rounded-full border border-gold/40 bg-abyss flex items-center justify-center text-[10px] font-serif text-gold/70">III</span>
+            <span class="node-seal absolute -left-10 md:left-1/2 md:-translate-x-1/2 top-1 w-7 h-7 rounded-full border border-viola/40 bg-abyss flex items-center justify-center text-[10px] font-display text-viola/70">III</span>
             <div class="md:text-right md:pr-2">
-              <h3 class="font-serif text-3xl text-parchment">El licenciado</h3>
+              <h3 class="font-display text-3xl text-frost">El licenciado</h3>
               <p class="text-[11px] tracking-[0.28em] uppercase text-mist mt-2 mb-4">Día del examen</p>
               <p class="text-mist font-light leading-relaxed">
-                Entras al centro de examen habiendo practicado con simulacros idénticos al examen real.
-                Apruebas a la primera. Firmas tus primeras pólizas. Tu carrera en seguros comienza.
+                Entras al centro de examen habiendo practicado en condiciones idénticas.
+                Apruebas en tu siguiente intento. Firmas tus primeras pólizas. Tu carrera en seguros comienza.
               </p>
             </div>
             <div aria-hidden="true"></div>
           </div>
         </div>
 
-        <!-- Inscripciones de resultados -->
-        <div class="mt-24 grid grid-cols-1 sm:grid-cols-3 gap-px bg-gold/15 border border-gold/15" data-reveal>
+        <!-- Piedras del camino (datos honestos, sin cifras infladas) -->
+        <div class="mt-24 grid grid-cols-1 sm:grid-cols-3 gap-px bg-viola/15 border border-viola/15" data-reveal>
           <div class="bg-abyss px-8 py-10 text-center">
-            <p class="font-serif text-5xl text-goldlight"><span data-count-to="92" data-count-suffix="%">92%</span></p>
-            <p class="text-[10px] tracking-[0.28em] uppercase text-mist mt-3">aprueba en el primer intento</p>
+            <p class="font-display text-5xl font-extralight text-violalight">70%</p>
+            <p class="text-[10px] tracking-[0.28em] uppercase text-mist mt-3">reprueba a nivel nacional — tú no serás parte</p>
           </div>
           <div class="bg-abyss px-8 py-10 text-center">
-            <p class="font-serif text-5xl text-goldlight"><span data-count-to="1200" data-count-suffix="+">1,200+</span></p>
-            <p class="text-[10px] tracking-[0.28em] uppercase text-mist mt-3">profesionales hispanos formados</p>
+            <p class="font-display text-5xl font-extralight text-violalight">2 <span class="text-2xl">noches</span></p>
+            <p class="text-[10px] tracking-[0.28em] uppercase text-mist mt-3">le bastaron a Jesus con este método</p>
           </div>
           <div class="bg-abyss px-8 py-10 text-center">
-            <p class="font-serif text-5xl text-goldlight"><span data-count-to="21">21</span> <span class="text-2xl">días</span></p>
-            <p class="text-[10px] tracking-[0.28em] uppercase text-mist mt-3">promedio para completarlo</p>
+            <p class="font-display text-5xl font-extralight text-violalight">Cada 2 <span class="text-2xl">semanas</span></p>
+            <p class="text-[10px] tracking-[0.28em] uppercase text-mist mt-3">clases en vivo · Dallas o Zoom</p>
           </div>
         </div>
         <p class="mt-4 text-center text-xs text-mist/60 font-light" data-reveal>Los resultados varían según el esfuerzo individual.</p>
@@ -603,72 +633,45 @@
     <div class="hairline max-w-4xl mx-auto" aria-hidden="true"></div>
 
     <!-- ============================================================
-         VOCES (testimonios)
+         LA COHORTE FUNDADORA (exclusividad honesta — aún sin egresados)
     ============================================================ -->
-    <section id="voces" class="relative py-28 md:py-40 overflow-hidden">
+    <section id="cohorte" class="relative py-28 md:py-40 overflow-hidden">
       <div class="relative max-w-6xl mx-auto px-6">
-        <p class="kicker mb-6 text-center" data-reveal>Voces de la academia</p>
-        <h2 class="font-serif text-4xl md:text-6xl font-medium text-parchment text-center leading-[1.1]" data-reveal>
-          Ya excavaron.<br /><span class="italic text-goldlight">Ya aprobaron.</span>
+        <p class="kicker mb-6 text-center" data-reveal>La cohorte fundadora</p>
+        <h2 class="font-display text-4xl md:text-6xl font-light text-frost text-center leading-[1.1]" data-reveal>
+          Sé de los primeros.<br /><span class="italic text-violalight">La historia empieza contigo.</span>
         </h2>
+        <p class="mt-8 text-center text-mist text-lg font-light max-w-2xl mx-auto leading-relaxed" data-reveal>
+          Alleanza Academy abre sus puertas. No vamos a mostrarte testimonios inventados ni cifras infladas:
+          la cohorte fundadora se está formando ahora mismo — y eso te da ventajas que ninguna
+          generación futura tendrá.
+        </p>
 
-        <div class="mt-20 grid md:grid-cols-2 gap-px bg-gold/12 border border-gold/12">
-
-          <figure class="bg-abyss p-10 md:p-12" data-reveal>
-            <blockquote class="font-serif text-xl md:text-2xl leading-relaxed text-bone/90 italic">
-              “Trabajaba en construcción, cero experiencia en seguros. El curso fue directo y sin relleno.
-              Aprobé a la primera y ya firmé mis primeras pólizas.”
-            </blockquote>
-            <figcaption class="mt-8 flex items-center gap-4">
-              <span class="w-11 h-11 rounded-full border border-gold/40 flex items-center justify-center font-serif text-gold text-sm" aria-hidden="true">CM</span>
-              <span>
-                <span class="block text-sm font-semibold text-bone tracking-wide">Carlos M.</span>
-                <span class="block text-[10px] tracking-[0.25em] uppercase text-mist mt-1">Dallas, TX · Construcción → Seguros</span>
-              </span>
-            </figcaption>
-          </figure>
-
-          <figure class="bg-abyss p-10 md:p-12" data-reveal data-reveal-delay="0.1">
-            <blockquote class="font-serif text-xl md:text-2xl leading-relaxed text-bone/90 italic">
-              “Trabajo 50+ horas. Las lecciones de 12 minutos me permitieron estudiar en el carro.
-              La app de quiz es idéntica al examen real. Aprobé en febrero.”
-            </blockquote>
-            <figcaption class="mt-8 flex items-center gap-4">
-              <span class="w-11 h-11 rounded-full border border-gold/40 flex items-center justify-center font-serif text-gold text-sm" aria-hidden="true">MR</span>
-              <span>
-                <span class="block text-sm font-semibold text-bone tracking-wide">María R.</span>
-                <span class="block text-[10px] tracking-[0.25em] uppercase text-mist mt-1">Houston, TX · Profesional ocupada</span>
-              </span>
-            </figcaption>
-          </figure>
-
-          <figure class="bg-abyss p-10 md:p-12" data-reveal>
-            <blockquote class="font-serif text-xl md:text-2xl leading-relaxed text-bone/90 italic">
-              “Fallé la primera vez con un curso genérico. Aquí entendí exactamente qué estudiar.
-              En mi segundo intento saqué 89 de 100.”
-            </blockquote>
-            <figcaption class="mt-8 flex items-center gap-4">
-              <span class="w-11 h-11 rounded-full border border-gold/40 flex items-center justify-center font-serif text-gold text-sm" aria-hidden="true">DH</span>
-              <span>
-                <span class="block text-sm font-semibold text-bone tracking-wide">David H.</span>
-                <span class="block text-[10px] tracking-[0.25em] uppercase text-mist mt-1">Austin, TX · Reintentó y aprobó</span>
-              </span>
-            </figcaption>
-          </figure>
-
-          <figure class="bg-abyss p-10 md:p-12" data-reveal data-reveal-delay="0.1">
-            <blockquote class="font-serif text-xl md:text-2xl leading-relaxed text-bone/90 italic">
-              “Pensé que sería muy complicado. Las lecciones están tan bien organizadas
-              que aprobé la sección de Salud a la primera, sin problema.”
-            </blockquote>
-            <figcaption class="mt-8 flex items-center gap-4">
-              <span class="w-11 h-11 rounded-full border border-gold/40 flex items-center justify-center font-serif text-gold text-sm" aria-hidden="true">SM</span>
-              <span>
-                <span class="block text-sm font-semibold text-bone tracking-wide">Sofía M.</span>
-                <span class="block text-[10px] tracking-[0.25em] uppercase text-mist mt-1">Miami, FL · Enfermería → Seguros</span>
-              </span>
-            </figcaption>
-          </figure>
+        <div class="mt-16 grid md:grid-cols-3 gap-px bg-viola/12 border border-viola/12">
+          <div class="bg-abyss p-10 md:p-12" data-reveal>
+            <p class="font-display text-viola/70 text-xl mb-5">I</p>
+            <h3 class="font-display text-2xl font-light text-frost leading-snug">Precio de lanzamiento</h3>
+            <p class="mt-4 text-mist font-light leading-relaxed text-[15px]">
+              $107 con cupón de invitación ($259 regular). Este precio existe solo mientras
+              se forma la cohorte fundadora.
+            </p>
+          </div>
+          <div class="bg-abyss p-10 md:p-12" data-reveal data-reveal-delay="0.1">
+            <p class="font-display text-viola/70 text-xl mb-5">II</p>
+            <h3 class="font-display text-2xl font-light text-frost leading-snug">Acceso directo a Jesus</h3>
+            <p class="mt-4 text-mist font-light leading-relaxed text-[15px]">
+              Máximo 50 lugares. Clases en vivo cara a cara — en Dallas o por Zoom —, Q&amp;A con respuesta
+              en menos de 24 horas y llamada de auditoría 1-a-1 (valor $99) incluida.
+            </p>
+          </div>
+          <div class="bg-abyss p-10 md:p-12" data-reveal data-reveal-delay="0.2">
+            <p class="font-display text-viola/70 text-xl mb-5">III</p>
+            <h3 class="font-display text-2xl font-light text-frost leading-snug">Voz de fundador</h3>
+            <p class="mt-4 text-mist font-light leading-relaxed text-[15px]">
+              Tu experiencia moldea el programa: lo que pidas se construye, y recibes cada
+              actualización del contenido sin costo extra.
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -679,33 +682,35 @@
          LA INVERSIÓN (inscripción)
     ============================================================ -->
     <section id="inversion" class="relative py-28 md:py-40 overflow-hidden bg-ink/40">
-      <div class="absolute -bottom-40 -left-40 w-[600px] h-[600px] glow-gold blur-2xl" aria-hidden="true"></div>
+      <div class="absolute -bottom-40 -left-40 w-[600px] h-[600px] glow-viola blur-2xl" aria-hidden="true"></div>
 
       <div class="relative max-w-5xl mx-auto px-6">
         <p class="kicker mb-6 text-center" data-reveal>La inversión</p>
-        <h2 class="font-serif text-4xl md:text-6xl font-medium text-parchment text-center leading-[1.1]" data-reveal>
-          Un solo programa.<br /><span class="italic text-goldlight">Dos puertas de entrada.</span>
+        <h2 class="font-display text-4xl md:text-6xl font-light text-frost text-center leading-[1.1]" data-reveal>
+          Un solo programa.<br /><span class="italic text-violalight">Dos puertas de entrada.</span>
         </h2>
         <p class="mt-8 text-center text-mist text-lg font-light max-w-2xl mx-auto leading-relaxed" data-reveal>
-          Cohortes pequeñas — máximo 50 estudiantes — con clases que inician <span class="text-bone">cada dos semanas</span>.
-          Tu acceso dura <span class="text-bone">1 mes completo</span>, más 15 días de gracia para seguir practicando antes de tu examen.
+          Cohortes pequeñas — máximo 50 estudiantes — con <span class="text-bone">clases en vivo cada dos semanas,
+          en Dallas o por Zoom</span>. Tu acceso dura <span class="text-bone">1 mes completo</span>,
+          más 15 días de gracia para seguir practicando antes de tu examen.
         </p>
 
         <div class="mt-16 grid md:grid-cols-2 gap-6 items-stretch">
 
           <!-- Acceso general -->
-          <article class="border border-gold/15 bg-abyss p-10 md:p-12 flex flex-col" data-reveal>
+          <article class="border border-viola/15 bg-abyss p-10 md:p-12 flex flex-col" data-reveal>
             <p class="text-[11px] tracking-[0.3em] uppercase text-mist">Acceso general</p>
-            <p class="mt-6 font-serif text-6xl text-parchment">$259 <span class="text-lg text-mist font-sans font-light">USD</span></p>
+            <p class="mt-6 font-display text-6xl text-frost">$259 <span class="text-lg text-mist font-sans font-light">USD</span></p>
             <p class="mt-2 text-sm text-mist font-light">Pago único · Todas las capas incluidas</p>
             <div class="hairline my-8"></div>
             <ul class="space-y-3 text-[15px] text-mist font-light flex-1">
-              <li class="flex gap-3"><span class="text-gold">—</span>50+ lecciones en video en español (12–15 h)</li>
-              <li class="flex gap-3"><span class="text-gold">—</span>Banco de 100+ preguntas con explicaciones</li>
-              <li class="flex gap-3"><span class="text-gold">—</span>App de quiz con repetición espaciada y simulacros</li>
-              <li class="flex gap-3"><span class="text-gold">—</span>200+ flashcards bilingües</li>
-              <li class="flex gap-3"><span class="text-gold">—</span>Q&amp;A con Jesus · respuesta en &lt; 24 h</li>
-              <li class="flex gap-3"><span class="text-gold">—</span>Guía “Lo que siempre viene en el examen”</li>
+              <li class="flex gap-3"><span class="text-viola">—</span>50+ lecciones en video en español (12–15 h)</li>
+              <li class="flex gap-3"><span class="text-viola">—</span>Clases en vivo cada 2 semanas · Dallas o Zoom</li>
+              <li class="flex gap-3"><span class="text-viola">—</span>Simulacros cronometrados en condiciones de examen real</li>
+              <li class="flex gap-3"><span class="text-viola">—</span>Banco de 100+ preguntas con explicaciones</li>
+              <li class="flex gap-3"><span class="text-viola">—</span>200+ flashcards bilingües</li>
+              <li class="flex gap-3"><span class="text-viola">—</span>Q&amp;A con Jesus · respuesta en &lt; 24 h</li>
+              <li class="flex gap-3"><span class="text-viola">—</span>Guía “Lo que siempre viene en el examen”</li>
             </ul>
             <a href="https://academia.alleanzainsurance.org/courses/preparacion-para-el-examen-de-licencia-de-seguros-de-texas-vida-accidentes-y-salud/"
                class="btn-ghost mt-10 inline-flex items-center justify-center h-[54px] text-[12px] tracking-[0.22em] uppercase font-semibold">
@@ -714,30 +719,30 @@
           </article>
 
           <!-- Agentes invitados -->
-          <article class="relative border border-gold/60 bg-abyss p-10 md:p-12 flex flex-col shadow-[0_30px_80px_-30px_rgba(201,165,94,.35)]" data-reveal data-reveal-delay="0.12">
+          <article class="relative border border-viola/60 bg-abyss p-10 md:p-12 flex flex-col shadow-[0_30px_80px_-30px_rgba(201,165,94,.35)]" data-reveal data-reveal-delay="0.12">
             <span class="absolute -top-[13px] left-10 bg-gradient-to-r from-[#d8b876] to-[#b28b45] text-abyss text-[10px] tracking-[0.25em] uppercase font-bold px-4 py-1.5">
               Con cupón de invitación
             </span>
-            <p class="text-[11px] tracking-[0.3em] uppercase text-goldlight">Agentes invitados por Alleanza Insurance</p>
-            <p class="mt-6 font-serif text-6xl text-parchment">$107 <span class="text-lg text-mist font-sans font-light">USD</span></p>
+            <p class="text-[11px] tracking-[0.3em] uppercase text-violalight">Agentes invitados por Alleanza Insurance</p>
+            <p class="mt-6 font-display text-6xl text-frost">$107 <span class="text-lg text-mist font-sans font-light">USD</span></p>
             <p class="mt-2 text-sm text-mist font-light"><span class="line-through opacity-60">$259</span> · Pago único · El programa completo</p>
             <div class="hairline my-8"></div>
             <ul class="space-y-3 text-[15px] text-mist font-light flex-1">
-              <li class="flex gap-3"><span class="text-gold">—</span>Todo lo del acceso general, sin excepción</li>
-              <li class="flex gap-3"><span class="text-gold">—</span>Bonus de cohorte: llamada de auditoría 1-a-1 con Jesus (30 min, valor $99)</li>
-              <li class="flex gap-3 text-goldlight"><span class="text-gold">—</span><span><strong class="font-semibold">Pide tu cupón a tu manager antes de comprar</strong> y aplícalo al momento del pago.</span></li>
+              <li class="flex gap-3"><span class="text-viola">—</span>Todo lo del acceso general, sin excepción</li>
+              <li class="flex gap-3"><span class="text-viola">—</span>Bonus de cohorte: llamada de auditoría 1-a-1 con Jesus (30 min, valor $99)</li>
+              <li class="flex gap-3 text-violalight"><span class="text-viola">—</span><span><strong class="font-semibold">Pide tu cupón a tu manager antes de comprar</strong> y aplícalo al momento del pago.</span></li>
             </ul>
             <a href="https://academia.alleanzainsurance.org/courses/preparacion-para-el-examen-de-licencia-de-seguros-de-texas-vida-accidentes-y-salud/"
-               class="btn-gold mt-10 inline-flex items-center justify-center h-[54px] text-[12px] tracking-[0.22em] uppercase">
+               class="btn-royal mt-10 inline-flex items-center justify-center h-[54px] text-[12px] tracking-[0.22em] uppercase">
               Inscribirme con cupón — $107
             </a>
           </article>
         </div>
 
         <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-x-10 gap-y-3 text-[11px] tracking-[0.25em] uppercase text-mist" data-reveal>
-          <span class="flex items-center gap-2.5"><span class="w-1 h-1 rounded-full bg-gold"></span>Garantía de satisfacción de 30 días</span>
-          <span class="flex items-center gap-2.5"><span class="w-1 h-1 rounded-full bg-gold"></span>Pago seguro con Stripe</span>
-          <span class="flex items-center gap-2.5"><span class="w-1 h-1 rounded-full bg-gold"></span>Acceso inmediato al inscribirte</span>
+          <span class="flex items-center gap-2.5"><span class="w-1 h-1 rounded-full bg-viola"></span>Garantía de satisfacción de 30 días</span>
+          <span class="flex items-center gap-2.5"><span class="w-1 h-1 rounded-full bg-viola"></span>Pago seguro con Stripe</span>
+          <span class="flex items-center gap-2.5"><span class="w-1 h-1 rounded-full bg-viola"></span>Acceso inmediato al inscribirte</span>
         </div>
       </div>
     </section>
@@ -750,87 +755,87 @@
     <section id="preguntas" class="relative py-28 md:py-36">
       <div class="max-w-3xl mx-auto px-6">
         <p class="kicker mb-6 text-center" data-reveal>Antes de decidir</p>
-        <h2 class="font-serif text-4xl md:text-5xl font-medium text-parchment text-center leading-[1.12]" data-reveal>
-          Preguntas, <span class="italic text-goldlight">respondidas con honestidad.</span>
+        <h2 class="font-display text-4xl md:text-5xl font-light text-frost text-center leading-[1.12]" data-reveal>
+          Preguntas, <span class="italic text-violalight">respondidas con honestidad.</span>
         </h2>
 
         <div class="mt-14" id="faq" data-reveal>
 
           <div class="faq-item" data-open="false">
             <h3><button type="button" class="faq-btn w-full flex items-center justify-between gap-6 py-6 text-left" aria-expanded="false" aria-controls="faq-1">
-              <span class="font-serif text-xl md:text-[22px] text-bone">¿Este curso realmente está en español?</span>
-              <span class="faq-cross text-gold text-xl font-light shrink-0" aria-hidden="true">+</span>
+              <span class="font-display text-xl md:text-[22px] text-bone">¿Este curso realmente está en español?</span>
+              <span class="faq-cross text-viola text-xl font-light shrink-0" aria-hidden="true">+</span>
             </button></h3>
             <div id="faq-1" class="faq-panel" role="region"><p class="pb-7 pr-10 text-mist font-light leading-relaxed">Sí, 100%. Las lecciones están grabadas y enseñadas en español, con subtítulos en inglés disponibles. Como el examen oficial es en inglés, las flashcards son bilingües (español ↔ inglés) para que domines los términos exactos que verás el día del examen.</p></div>
           </div>
 
           <div class="faq-item" data-open="false">
             <h3><button type="button" class="faq-btn w-full flex items-center justify-between gap-6 py-6 text-left" aria-expanded="false" aria-controls="faq-2">
-              <span class="font-serif text-xl md:text-[22px] text-bone">¿Cuánto tiempo necesito estudiar por semana?</span>
-              <span class="faq-cross text-gold text-xl font-light shrink-0" aria-hidden="true">+</span>
+              <span class="font-display text-xl md:text-[22px] text-bone">¿Cuánto tiempo necesito estudiar por semana?</span>
+              <span class="faq-cross text-viola text-xl font-light shrink-0" aria-hidden="true">+</span>
             </button></h3>
-            <div id="faq-2" class="faq-panel" role="region"><p class="pb-7 pr-10 text-mist font-light leading-relaxed">Con 25–30 minutos al día, 4–5 días por semana (unas 4–6 horas semanales), la mayoría termina en unos 21 días. Las lecciones duran 10–15 minutos precisamente para caber en tu hora de almuerzo o el trayecto al trabajo.</p></div>
+            <div id="faq-2" class="faq-panel" role="region"><p class="pb-7 pr-10 text-mist font-light leading-relaxed">Con 25–30 minutos al día, 4–5 días por semana (unas 4–6 horas semanales), el programa está diseñado para completarse en unas 3 semanas. Las lecciones duran 10–15 minutos precisamente para caber en tu hora de almuerzo o el trayecto al trabajo.</p></div>
           </div>
 
           <div class="faq-item" data-open="false">
             <h3><button type="button" class="faq-btn w-full flex items-center justify-between gap-6 py-6 text-left" aria-expanded="false" aria-controls="faq-3">
-              <span class="font-serif text-xl md:text-[22px] text-bone">¿Qué pasa si no apruebo el examen?</span>
-              <span class="faq-cross text-gold text-xl font-light shrink-0" aria-hidden="true">+</span>
+              <span class="font-display text-xl md:text-[22px] text-bone">¿Qué pasa si no apruebo el examen?</span>
+              <span class="faq-cross text-viola text-xl font-light shrink-0" aria-hidden="true">+</span>
             </button></h3>
-            <div id="faq-3" class="faq-panel" role="region"><p class="pb-7 pr-10 text-mist font-light leading-relaxed">Honestidad total: nadie puede garantizarte que apruebes — desconfía de quien lo prometa. Lo que sí te decimos es que el 92% de nuestros estudiantes aprueba a la primera. Si no lo logras, aprovechamos tus 15 días de gracia: revisamos tu diagnóstico en el Q&amp;A y armamos un plan de refuerzo para tu segundo intento, sin costo adicional.</p></div>
+            <div id="faq-3" class="faq-panel" role="region"><p class="pb-7 pr-10 text-mist font-light leading-relaxed">Honestidad total: nadie puede garantizarte que apruebes — desconfía de quien lo prometa. Lo que sí hacemos: los simulacros en condiciones reales te dicen exactamente qué fallaste, para que recuperes esos puntos antes del día del examen. Y si no lo logras, aprovechamos tus 15 días de gracia: revisamos tu diagnóstico en el Q&amp;A y armamos un plan de refuerzo para tu siguiente intento, sin costo adicional.</p></div>
           </div>
 
           <div class="faq-item" data-open="false">
             <h3><button type="button" class="faq-btn w-full flex items-center justify-between gap-6 py-6 text-left" aria-expanded="false" aria-controls="faq-4">
-              <span class="font-serif text-xl md:text-[22px] text-bone">¿Cómo funciona el cupón de $107?</span>
-              <span class="faq-cross text-gold text-xl font-light shrink-0" aria-hidden="true">+</span>
+              <span class="font-display text-xl md:text-[22px] text-bone">¿Cómo funciona el cupón de $107?</span>
+              <span class="faq-cross text-viola text-xl font-light shrink-0" aria-hidden="true">+</span>
             </button></h3>
             <div id="faq-4" class="faq-panel" role="region"><p class="pb-7 pr-10 text-mist font-light leading-relaxed">El precio regular del programa es $259. Si eres un agente invitado por Alleanza Insurance, tu inscripción cuesta $107: <strong class="text-bone font-medium">pide tu cupón a tu manager antes de comprar</strong> y aplícalo al momento del pago. Ambas puertas dan acceso al mismo programa completo.</p></div>
           </div>
 
           <div class="faq-item" data-open="false">
             <h3><button type="button" class="faq-btn w-full flex items-center justify-between gap-6 py-6 text-left" aria-expanded="false" aria-controls="faq-5">
-              <span class="font-serif text-xl md:text-[22px] text-bone">¿Cuándo empieza mi cohorte y cuánto dura el acceso?</span>
-              <span class="faq-cross text-gold text-xl font-light shrink-0" aria-hidden="true">+</span>
+              <span class="font-display text-xl md:text-[22px] text-bone">¿Cuándo empieza mi cohorte y cuánto dura el acceso?</span>
+              <span class="faq-cross text-viola text-xl font-light shrink-0" aria-hidden="true">+</span>
             </button></h3>
-            <div id="faq-5" class="faq-panel" role="region"><p class="pb-7 pr-10 text-mist font-light leading-relaxed">Las clases inician cada dos semanas, así que nunca esperas más de 15 días para arrancar con tu grupo. Tu acceso dura 1 mes completo, más 15 días adicionales de gracia para seguir practicando con la app de quiz y las flashcards antes de tu examen. Es tiempo de sobra: el estudiante promedio termina en 21 días.</p></div>
+            <div id="faq-5" class="faq-panel" role="region"><p class="pb-7 pr-10 text-mist font-light leading-relaxed">Las cohortes inician cada dos semanas, así que nunca esperas más de 15 días para arrancar con tu grupo. Las clases en vivo también son cada dos semanas — presenciales en Dallas o por Zoom en vivo. Tu acceso dura 1 mes completo, más 15 días adicionales de gracia para seguir practicando con la app de quiz y las flashcards antes de tu examen.</p></div>
           </div>
 
           <div class="faq-item" data-open="false">
             <h3><button type="button" class="faq-btn w-full flex items-center justify-between gap-6 py-6 text-left" aria-expanded="false" aria-controls="faq-6">
-              <span class="font-serif text-xl md:text-[22px] text-bone">¿Cuál es la política de devolución?</span>
-              <span class="faq-cross text-gold text-xl font-light shrink-0" aria-hidden="true">+</span>
+              <span class="font-display text-xl md:text-[22px] text-bone">¿Cuál es la política de devolución?</span>
+              <span class="faq-cross text-viola text-xl font-light shrink-0" aria-hidden="true">+</span>
             </button></h3>
             <div id="faq-6" class="faq-panel" role="region"><p class="pb-7 pr-10 text-mist font-light leading-relaxed">La inscripción es un pago único, protegido por una garantía de satisfacción de 30 días sobre el contenido del curso. Si el programa no es para ti, escríbenos dentro de ese periodo y gestionamos tu devolución. Sin preguntas incómodas.</p></div>
           </div>
 
           <div class="faq-item" data-open="false">
             <h3><button type="button" class="faq-btn w-full flex items-center justify-between gap-6 py-6 text-left" aria-expanded="false" aria-controls="faq-7">
-              <span class="font-serif text-xl md:text-[22px] text-bone">¿Funciona para los 50 estados?</span>
-              <span class="faq-cross text-gold text-xl font-light shrink-0" aria-hidden="true">+</span>
+              <span class="font-display text-xl md:text-[22px] text-bone">¿Funciona para los 50 estados?</span>
+              <span class="faq-cross text-viola text-xl font-light shrink-0" aria-hidden="true">+</span>
             </button></h3>
             <div id="faq-7" class="faq-panel" role="region"><p class="pb-7 pr-10 text-mist font-light leading-relaxed">Sí. La gran mayoría del contenido del examen es común a nivel nacional (conceptos, tipos de pólizas, provisiones, ética). El programa incluye además módulos con los énfasis y regulaciones específicos por estado cuando aplican, y te orientamos sobre los requisitos particulares del tuyo.</p></div>
           </div>
 
           <div class="faq-item" data-open="false">
             <h3><button type="button" class="faq-btn w-full flex items-center justify-between gap-6 py-6 text-left" aria-expanded="false" aria-controls="faq-8">
-              <span class="font-serif text-xl md:text-[22px] text-bone">¿Puedo estudiar desde el celular?</span>
-              <span class="faq-cross text-gold text-xl font-light shrink-0" aria-hidden="true">+</span>
+              <span class="font-display text-xl md:text-[22px] text-bone">¿Puedo estudiar desde el celular?</span>
+              <span class="faq-cross text-viola text-xl font-light shrink-0" aria-hidden="true">+</span>
             </button></h3>
-            <div id="faq-8" class="faq-panel" role="region"><p class="pb-7 pr-10 text-mist font-light leading-relaxed">Sí. Toda la plataforma — lecciones, quizzes y flashcards — está optimizada para móvil. Muchos estudiantes estudian en el carro (escuchando las lecciones), en el descanso del trabajo o mientras esperan a los niños en la escuela.</p></div>
+            <div id="faq-8" class="faq-panel" role="region"><p class="pb-7 pr-10 text-mist font-light leading-relaxed">Sí. Toda la plataforma — lecciones, quizzes y flashcards — está optimizada para móvil. Puedes estudiar en el carro (escuchando las lecciones), en el descanso del trabajo o mientras esperas a los niños en la escuela. Y a las clases en vivo puedes entrar por Zoom desde donde estés.</p></div>
           </div>
 
           <div class="faq-item" data-open="false">
             <h3><button type="button" class="faq-btn w-full flex items-center justify-between gap-6 py-6 text-left" aria-expanded="false" aria-controls="faq-9">
-              <span class="font-serif text-xl md:text-[22px] text-bone">¿Qué licencias cubre y recibo un certificado?</span>
-              <span class="faq-cross text-gold text-xl font-light shrink-0" aria-hidden="true">+</span>
+              <span class="font-display text-xl md:text-[22px] text-bone">¿Qué licencias cubre y recibo un certificado?</span>
+              <span class="faq-cross text-viola text-xl font-light shrink-0" aria-hidden="true">+</span>
             </button></h3>
             <div id="faq-9" class="faq-panel" role="region"><p class="pb-7 pr-10 text-mist font-light leading-relaxed">Cubre las líneas de Vida (Life), Salud (Health), Accidentes (Accident) y General Lines. Al terminar recibes un certificado de finalización de Alleanza Academy. Importante: la licencia la emite el departamento de seguros de tu estado cuando apruebas el examen oficial y cumples sus requisitos — algunos estados exigen además un curso de pre-licencia aprobado; te orientamos para verificar los del tuyo.</p></div>
           </div>
         </div>
 
         <div class="mt-16 text-center" data-reveal>
-          <a href="#inversion" class="btn-gold inline-flex items-center justify-center px-10 h-[54px] text-[12px] tracking-[0.22em] uppercase">
+          <a href="#inversion" class="btn-royal inline-flex items-center justify-center px-10 h-[54px] text-[12px] tracking-[0.22em] uppercase">
             Comenzar mi preparación
           </a>
         </div>
@@ -842,25 +847,25 @@
   <!-- ============================================================
        FOOTER — citas rotativas + sello
   ============================================================ -->
-  <footer class="relative border-t border-gold/15 bg-abyss">
+  <footer class="relative border-t border-viola/15 bg-abyss">
     <!-- Citas rotativas -->
     <div class="max-w-3xl mx-auto px-6 pt-20 pb-14 text-center">
       <div id="quotes" class="relative min-h-[110px]">
         <blockquote class="quote-slide active">
-          <p class="font-serif text-2xl md:text-3xl italic text-parchment/90 leading-relaxed">“El conocimiento superficial se olvida. La maestría se excava.”</p>
-          <footer class="mt-4 text-[10px] tracking-[0.35em] uppercase text-gold">Método Alleanza</footer>
+          <p class="font-display text-2xl md:text-3xl italic text-frost/90 leading-relaxed">“El conocimiento superficial se olvida. La maestría se excava.”</p>
+          <footer class="mt-4 text-[10px] tracking-[0.35em] uppercase text-viola">Método Alleanza</footer>
         </blockquote>
         <blockquote class="quote-slide">
-          <p class="font-serif text-2xl md:text-3xl italic text-parchment/90 leading-relaxed">“La suerte favorece a la mente preparada.”</p>
-          <footer class="mt-4 text-[10px] tracking-[0.35em] uppercase text-gold">Louis Pasteur</footer>
+          <p class="font-display text-2xl md:text-3xl italic text-frost/90 leading-relaxed">“La suerte favorece a la mente preparada.”</p>
+          <footer class="mt-4 text-[10px] tracking-[0.35em] uppercase text-viola">Louis Pasteur</footer>
         </blockquote>
         <blockquote class="quote-slide">
-          <p class="font-serif text-2xl md:text-3xl italic text-parchment/90 leading-relaxed">“Aprobar no es memorizarlo todo. Es saber exactamente qué importa.”</p>
-          <footer class="mt-4 text-[10px] tracking-[0.35em] uppercase text-gold">Jesús E. Guerra</footer>
+          <p class="font-display text-2xl md:text-3xl italic text-frost/90 leading-relaxed">“Aprobar no es memorizarlo todo. Es saber exactamente qué importa.”</p>
+          <footer class="mt-4 text-[10px] tracking-[0.35em] uppercase text-viola">Jesús E. Guerra</footer>
         </blockquote>
         <blockquote class="quote-slide">
-          <p class="font-serif text-2xl md:text-3xl italic text-parchment/90 leading-relaxed">“Cada capa que descubres te acerca a la persona que decidiste ser.”</p>
-          <footer class="mt-4 text-[10px] tracking-[0.35em] uppercase text-gold">Alleanza Academy</footer>
+          <p class="font-display text-2xl md:text-3xl italic text-frost/90 leading-relaxed">“Cada capa que descubres te acerca a la persona que decidiste ser.”</p>
+          <footer class="mt-4 text-[10px] tracking-[0.35em] uppercase text-viola">Alleanza Academy</footer>
         </blockquote>
       </div>
     </div>
@@ -872,23 +877,23 @@
       <div>
         <div class="flex items-center gap-4 mb-6">
           <svg viewBox="0 0 120 150" class="w-11 h-14" aria-hidden="true">
-            <g fill="#8a5fd6">
+            <g fill="#9959d8">
               <path d="M60 0 l4.7 9.5 10.5 1.5 -7.6 7.4 1.8 10.4 -9.4 -4.9 -9.4 4.9 1.8 -10.4 -7.6 -7.4 10.5 -1.5 Z"/>
               <path d="M22 16 l3.2 6.4 7 1 -5 5 1.2 7 -6.4 -3.3 -6.3 3.3 1.2 -7 -5.1 -5 7 -1 Z"/>
               <path d="M98 16 l3.2 6.4 7 1 -5 5 1.2 7 -6.4 -3.3 -6.3 3.3 1.2 -7 -5.1 -5 7 -1 Z"/>
             </g>
             <path d="M60 26 C53 36 38 42 20 44 L20 84 C20 110 38 130 60 142 C82 130 100 110 100 84 L100 44 C82 42 67 36 60 26 Z"
-                  fill="#10172e" stroke="#8a5fd6" stroke-width="6" stroke-linejoin="round"/>
-            <g fill="#f2f0e9">
+                  fill="#0a1a3d" stroke="#9959d8" stroke-width="6" stroke-linejoin="round"/>
+            <g fill="#ffffff">
               <path d="M60 58 L74 100 Q60 92 46 100 Z"/>
-              <path d="M60 84 L66 100 L54 100 Z" fill="#10172e"/>
+              <path d="M60 84 L66 100 L54 100 Z" fill="#0a1a3d"/>
               <path d="M34 108 Q46 84 54 76 Q49 96 48 110 Q40 105 34 108 Z"/>
               <path d="M86 108 Q74 84 66 76 Q71 96 72 110 Q80 105 86 108 Z"/>
             </g>
           </svg>
           <span class="leading-none">
             <span class="block font-extrabold tracking-[0.14em] text-bone text-lg">ALLEANZA</span>
-            <span class="block text-[10px] tracking-widest2 text-brandsoft font-semibold mt-1.5">ACADEMY</span>
+            <span class="block text-[10px] tracking-widest2 text-violasoft font-semibold mt-1.5">ACADEMY</span>
           </span>
         </div>
         <p class="text-sm text-mist font-light leading-relaxed max-w-md">
@@ -902,28 +907,28 @@
       </div>
 
       <nav aria-label="Enlaces del pie de página">
-        <p class="text-[11px] tracking-[0.3em] uppercase text-gold mb-6">Explora</p>
+        <p class="text-[11px] tracking-[0.3em] uppercase text-viola mb-6">Explora</p>
         <ul class="space-y-3.5 text-sm text-mist font-light">
-          <li><a href="#capa-1" class="hover:text-goldlight transition-colors">El método</a></li>
-          <li><a href="#capas" class="hover:text-goldlight transition-colors">Las capas del conocimiento</a></li>
-          <li><a href="#mapa" class="hover:text-goldlight transition-colors">El mapa de la maestría</a></li>
-          <li><a href="#voces" class="hover:text-goldlight transition-colors">Voces</a></li>
-          <li><a href="#inversion" class="hover:text-goldlight transition-colors">Inscripción</a></li>
+          <li><a href="#capa-1" class="hover:text-violalight transition-colors">El método</a></li>
+          <li><a href="#capas" class="hover:text-violalight transition-colors">Las capas del conocimiento</a></li>
+          <li><a href="#mapa" class="hover:text-violalight transition-colors">El mapa de la maestría</a></li>
+          <li><a href="#cohorte" class="hover:text-violalight transition-colors">La cohorte fundadora</a></li>
+          <li><a href="#inversion" class="hover:text-violalight transition-colors">Inscripción</a></li>
         </ul>
       </nav>
 
       <div>
-        <p class="text-[11px] tracking-[0.3em] uppercase text-gold mb-6">Contacto</p>
+        <p class="text-[11px] tracking-[0.3em] uppercase text-viola mb-6">Contacto</p>
         <ul class="space-y-3.5 text-sm text-mist font-light">
-          <li><a href="mailto:alleanza.academy@jesusguerra.us" class="hover:text-goldlight transition-colors break-all">alleanza.academy@jesusguerra.us</a></li>
-          <li><a href="https://wa.me/12149974650" class="hover:text-goldlight transition-colors">WhatsApp · (214) 997-4650</a></li>
-          <li><a href="https://academia.alleanzainsurance.org" class="hover:text-goldlight transition-colors">academia.alleanzainsurance.org</a></li>
+          <li><a href="mailto:alleanza.academy@jesusguerra.us" class="hover:text-violalight transition-colors break-all">alleanza.academy@jesusguerra.us</a></li>
+          <li><a href="https://wa.me/12149974650" class="hover:text-violalight transition-colors">WhatsApp · (214) 997-4650</a></li>
+          <li><a href="https://academia.alleanzainsurance.org" class="hover:text-violalight transition-colors">academia.alleanzainsurance.org</a></li>
         </ul>
       </div>
     </div>
 
     <!-- Legal -->
-    <div class="border-t border-gold/10">
+    <div class="border-t border-viola/10">
       <div class="max-w-6xl mx-auto px-6 py-8">
         <p class="text-[11px] leading-relaxed text-mist/60 font-light max-w-4xl">
           Este curso es una herramienta educativa para preparar candidatos para exámenes de licencia de seguros.
@@ -999,8 +1004,8 @@
             ctx.beginPath();
             ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
             ctx.fillStyle = p.warm
-              ? 'rgba(214,180,118,' + alpha.toFixed(3) + ')'
-              : 'rgba(154,116,214,' + (alpha * 0.8).toFixed(3) + ')';
+              ? 'rgba(189,154,240,' + alpha.toFixed(3) + ')'
+              : 'rgba(234,237,243,' + (alpha * 0.7).toFixed(3) + ')';
             ctx.fill();
           }
           requestAnimationFrame(tick);
@@ -1058,8 +1063,8 @@
 
           // Resplandor central
           var g = ctx.createRadialGradient(cx, cy, 0, cx, cy, R * 1.15);
-          g.addColorStop(0, 'rgba(201,165,94,.10)');
-          g.addColorStop(0.55, 'rgba(138,95,214,.05)');
+          g.addColorStop(0, 'rgba(153,89,216,.12)');
+          g.addColorStop(0.55, 'rgba(124,70,166,.06)');
           g.addColorStop(1, 'rgba(0,0,0,0)');
           ctx.fillStyle = g;
           ctx.fillRect(cx - R * 1.3, cy - R * 1.3, R * 2.6, R * 2.6);
@@ -1077,8 +1082,8 @@
             ctx.beginPath();
             ctx.ellipse(0, 0, rx, ry, 0, 0, Math.PI * 2);
             ctx.strokeStyle = ring.warm
-              ? 'rgba(201,165,94,' + (0.10 + 0.10 * (1 - ring.r)).toFixed(3) + ')'
-              : 'rgba(138,95,214,' + (0.10 + 0.08 * (1 - ring.r)).toFixed(3) + ')';
+              ? 'rgba(153,89,216,' + (0.12 + 0.12 * (1 - ring.r)).toFixed(3) + ')'
+              : 'rgba(234,237,243,' + (0.07 + 0.06 * (1 - ring.r)).toFixed(3) + ')';
             ctx.lineWidth = ring.w;
             ctx.stroke();
             ctx.restore();
@@ -1097,15 +1102,15 @@
             var y = cy + pointerY * 10 * (1 - ringM.r) + ex * Math.sin(baseRot) + ey * Math.cos(baseRot);
             ctx.beginPath();
             ctx.arc(x, y, mote.size, 0, Math.PI * 2);
-            ctx.fillStyle = ringM.warm ? 'rgba(226,199,141,.75)' : 'rgba(179,148,234,.65)';
+            ctx.fillStyle = ringM.warm ? 'rgba(189,154,240,.8)' : 'rgba(234,237,243,.6)';
             ctx.fill();
           }
 
           // Núcleo
           ctx.beginPath();
           ctx.arc(cx + pointerX * 16, cy + pointerY * 12, 3.4, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(230,207,154,.9)';
-          ctx.shadowColor = 'rgba(201,165,94,.8)';
+          ctx.fillStyle = 'rgba(226,214,255,.95)';
+          ctx.shadowColor = 'rgba(153,89,216,.85)';
           ctx.shadowBlur = 18;
           ctx.fill();
           ctx.shadowBlur = 0;
@@ -1220,32 +1225,6 @@
         document.querySelectorAll('[data-open="true"] .stratum-panel, [data-open="true"] .faq-panel')
           .forEach(function (panel) { panel.style.maxHeight = panel.scrollHeight + 'px'; });
       });
-
-      /* ==========================================================
-         CONTADORES
-      ========================================================== */
-      var counters = document.querySelectorAll('[data-count-to]');
-      function animateCounter(el) {
-        var target = parseInt(el.getAttribute('data-count-to'), 10);
-        var suffix = el.getAttribute('data-count-suffix') || '';
-        var duration = 1400, start = null;
-        function step(ts) {
-          if (!start) start = ts;
-          var p = Math.min((ts - start) / duration, 1);
-          var eased = 1 - Math.pow(1 - p, 3);
-          el.textContent = Math.round(eased * target).toLocaleString('en-US') + suffix;
-          if (p < 1) requestAnimationFrame(step);
-        }
-        requestAnimationFrame(step);
-      }
-      if ('IntersectionObserver' in window && !reduced) {
-        var counterObs = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) { animateCounter(entry.target); counterObs.unobserve(entry.target); }
-          });
-        }, { threshold: 0.6 });
-        counters.forEach(function (el) { counterObs.observe(el); });
-      }
 
       /* ==========================================================
          CITAS ROTATIVAS DEL FOOTER
