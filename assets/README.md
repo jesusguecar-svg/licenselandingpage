@@ -1,15 +1,14 @@
-# Fotos del equipo
+# Fotos y logos del equipo
 
-La página busca estas tres imágenes automáticamente. Sube aquí los archivos
-con estos nombres exactos (formato PNG o el circular que ya tienes) y las
-fotos aparecerán en la página en el siguiente despliegue — mientras no
-existan, se muestran las iniciales como respaldo:
+Estos archivos ya están subidos y en uso en la página:
 
 | Archivo | Aparece en |
 |---|---|
 | `jesus.png` | Tarjeta "Tu instructor" (sección El origen) |
-| `guillermo.png` | Fundadores, cuadro Alleanza Insurance Corp |
-| `cynthia.png` | Fundadoras, cuadro Alleanza Insurance Corp |
+| `guillermo.jpg` | Fundadores, cuadro Alleanza Insurance Corp |
+| `cynthia.jpg` | Fundadoras, cuadro Alleanza Insurance Corp |
+| `logo-alleanza-insurance.png` | Lockup superior del cuadro Alleanza Insurance Corp |
 
-Cómo subirlas: en GitHub, entra a esta carpeta `assets/` → **Add file →
-Upload files** → arrastra las tres imágenes → commit directo a `main`.
+Para reemplazar cualquiera, sube un archivo nuevo con el mismo nombre exacto
+(minúsculas) desde GitHub → esta carpeta `assets/` → **Add file → Upload
+files** → commit a `main`. El despliegue a la página en vivo es automático.
