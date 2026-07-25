@@ -134,6 +134,65 @@
     .quote-slide { transition: opacity 1.2s ease; opacity: 0; position: absolute; inset: 0; }
     .quote-slide.active { opacity: 1; position: relative; }
 
+    /* ============================ BARRA DE PROGRESO DE LECTURA ============================ */
+    #progress {
+      position: fixed; top: 0; left: 0; height: 2px; z-index: 60; width: 0%;
+      background: linear-gradient(90deg, #7c46a6, #9959d8, #bd9af0);
+      box-shadow: 0 0 12px rgba(153,89,216,.8);
+    }
+
+    /* ============================ MENÚ MÓVIL ============================ */
+    #menu-panel {
+      transform: translateY(-12px);
+      opacity: 0; pointer-events: none;
+      transition: opacity .35s ease, transform .35s cubic-bezier(.22,1,.36,1);
+    }
+    #menu-panel.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .burger span { transition: transform .35s cubic-bezier(.22,1,.36,1), opacity .25s ease; }
+    .burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(5px) rotate(45deg); }
+    .burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
+
+    /* ============================ CTA STICKY MÓVIL ============================ */
+    #sticky-cta {
+      transform: translateY(120%);
+      transition: transform .45s cubic-bezier(.22,1,.36,1);
+    }
+    #sticky-cta.show { transform: translateY(0); }
+
+    /* ============================ BOTÓN FLOTANTE DE WHATSAPP ============================ */
+    #wa-float {
+      transition: transform .4s cubic-bezier(.22,1,.36,1), opacity .4s ease, box-shadow .3s ease;
+      opacity: 0; transform: scale(.6) translateY(10px); pointer-events: none;
+      box-shadow: 0 12px 34px -10px rgba(37,211,102,.55);
+    }
+    #wa-float.show { opacity: 1; transform: none; pointer-events: auto; }
+    #wa-float:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 18px 44px -10px rgba(37,211,102,.75); }
+
+    /* ============================ SIMULADOR INTERACTIVO ============================ */
+    .quiz-opt {
+      border: 1px solid rgba(153,89,216,.2);
+      transition: border-color .3s ease, background-color .3s ease, transform .25s cubic-bezier(.22,1,.36,1);
+    }
+    .quiz-opt:not([disabled]):hover { border-color: rgba(153,89,216,.65); background: rgba(153,89,216,.07); transform: translateX(4px); }
+    .quiz-opt[data-state="correct"] { border-color: rgba(29,212,183,.85); background: rgba(29,212,183,.1); }
+    .quiz-opt[data-state="wrong"]   { border-color: rgba(240,90,110,.75); background: rgba(240,90,110,.09); }
+    .quiz-opt[data-state="reveal"]  { border-color: rgba(29,212,183,.5); }
+    .quiz-opt .mark { opacity: 0; transition: opacity .3s ease; }
+    .quiz-opt[data-state] .mark { opacity: 1; }
+    #quiz-explain { max-height: 0; overflow: hidden; opacity: 0; transition: max-height .5s cubic-bezier(.22,1,.36,1), opacity .4s ease; }
+    #quiz-explain.open { opacity: 1; }
+    .quiz-pip { transition: background-color .4s ease, transform .4s ease; }
+
+    /* ============================ TABLA COMPARATIVA ============================ */
+    .cmp-col { transition: background-color .4s ease, border-color .4s ease, transform .4s cubic-bezier(.22,1,.36,1); }
+    .cmp-col.featured { background: rgba(153,89,216,.06); border-color: rgba(153,89,216,.5); }
+    .cmp-col.featured:hover { transform: translateY(-4px); }
+
+    /* ============================ TARJETAS DE PRECIO (efecto "desenterrar") ============================ */
+    .price-card { transition: transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s ease, border-color .45s ease; }
+    .price-card:hover { transform: translateY(-6px); }
+
     /* ============================ ACCESIBILIDAD & MOVIMIENTO ============================ */
     a:focus-visible, button:focus-visible { outline: 2px solid #9959d8; outline-offset: 4px; border-radius: 2px; }
 
@@ -173,6 +232,7 @@
   <div class="film-grain" aria-hidden="true"></div>
   <div class="vignette" aria-hidden="true"></div>
   <canvas id="dust" class="fixed inset-0 z-[1] pointer-events-none" aria-hidden="true"></canvas>
+  <div id="progress" aria-hidden="true"></div>
 
   <!-- ============================================================
        NAVEGACIÓN
@@ -202,17 +262,39 @@
         </span>
       </a>
 
-      <nav class="hidden md:flex items-center gap-9 text-[12px] tracking-[0.22em] uppercase text-mist" aria-label="Navegación principal">
+      <nav class="hidden lg:flex items-center gap-8 text-[12px] tracking-[0.22em] uppercase text-mist" aria-label="Navegación principal">
         <a href="#capa-1" class="hover:text-violalight transition-colors duration-300">El Método</a>
+        <a href="#simulador" class="hover:text-violalight transition-colors duration-300">Simulador</a>
         <a href="#capas" class="hover:text-violalight transition-colors duration-300">Las Capas</a>
-        <a href="#mapa" class="hover:text-violalight transition-colors duration-300">El Mapa</a>
-        <a href="#cohorte" class="hover:text-violalight transition-colors duration-300">La Cohorte</a>
+        <a href="#comparativa" class="hover:text-violalight transition-colors duration-300">Comparativa</a>
         <a href="#inversion" class="hover:text-violalight transition-colors duration-300">Inversión</a>
       </nav>
 
-      <a href="#inversion" class="btn-ghost rounded-none px-6 h-11 inline-flex items-center text-[12px] tracking-[0.22em] uppercase font-semibold">
-        Inscríbete
-      </a>
+      <div class="flex items-center gap-3">
+        <a href="#inversion" class="btn-royal rounded-none px-5 md:px-6 h-11 inline-flex items-center text-[11px] md:text-[12px] tracking-[0.2em] uppercase whitespace-nowrap">
+          Inscríbete
+        </a>
+        <!-- Botón de menú (móvil / tablet) -->
+        <button type="button" id="burger" class="burger lg:hidden w-11 h-11 flex flex-col items-center justify-center gap-[5px] border border-viola/30"
+                aria-expanded="false" aria-controls="menu-panel" aria-label="Abrir menú">
+          <span class="block w-5 h-px bg-violalight"></span>
+          <span class="block w-5 h-px bg-violalight"></span>
+          <span class="block w-5 h-px bg-violalight"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Panel de menú móvil -->
+    <div id="menu-panel" class="lg:hidden absolute inset-x-0 top-full bg-abyss/97 backdrop-blur-xl border-y border-viola/20">
+      <nav class="max-w-6xl mx-auto px-6 py-6 flex flex-col" aria-label="Navegación móvil">
+        <a href="#capa-1"     class="menu-link py-3.5 text-[13px] tracking-[0.22em] uppercase text-mist hover:text-violalight border-b border-viola/10 transition-colors">El Método</a>
+        <a href="#simulador"  class="menu-link py-3.5 text-[13px] tracking-[0.22em] uppercase text-mist hover:text-violalight border-b border-viola/10 transition-colors">Simulador gratis</a>
+        <a href="#capas"      class="menu-link py-3.5 text-[13px] tracking-[0.22em] uppercase text-mist hover:text-violalight border-b border-viola/10 transition-colors">Las Capas</a>
+        <a href="#comparativa" class="menu-link py-3.5 text-[13px] tracking-[0.22em] uppercase text-mist hover:text-violalight border-b border-viola/10 transition-colors">Comparativa</a>
+        <a href="#mapa"       class="menu-link py-3.5 text-[13px] tracking-[0.22em] uppercase text-mist hover:text-violalight border-b border-viola/10 transition-colors">El Mapa</a>
+        <a href="#preguntas"  class="menu-link py-3.5 text-[13px] tracking-[0.22em] uppercase text-mist hover:text-violalight border-b border-viola/10 transition-colors">Preguntas</a>
+        <a href="#inversion"  class="menu-link py-3.5 text-[13px] tracking-[0.22em] uppercase text-violalight font-semibold transition-colors">Inversión →</a>
+      </nav>
     </div>
   </header>
 
@@ -239,19 +321,24 @@
           </h1>
 
           <p data-hero="3" class="mt-8 text-mist text-lg md:text-xl leading-relaxed max-w-xl font-light">
-            Lecciones en video en español + 100+ preguntas simuladas + una app de quiz que se siente
-            <span class="text-bone font-medium">exactamente como el examen real</span>.
-            Diseñado para hispanos ocupados, en cualquiera de los 50 estados.
+            Lecciones en video en español, <span class="text-bone font-medium">clases en vivo cada dos semanas</span>
+            (Dallas o Zoom) y simulacros que se sienten
+            <span class="text-bone font-medium">exactamente como el examen real</span> —
+            para que sepas qué fallaste y lo corrijas antes del día que cuenta.
           </p>
 
-          <div data-hero="4" class="mt-12 flex flex-col sm:flex-row gap-5 sm:items-center">
-            <a href="#inversion" class="btn-royal inline-flex items-center justify-center px-10 h-[54px] text-[13px] tracking-[0.22em] uppercase">
-              Inscríbete ahora
+          <div data-hero="4" class="mt-12 flex flex-col sm:flex-row gap-4 sm:gap-5 sm:items-center">
+            <a href="#inversion" class="btn-royal inline-flex items-center justify-center px-9 h-[56px] text-[13px] tracking-[0.2em] uppercase">
+              Asegura tu lugar · $107
             </a>
-            <a href="#capa-1" class="btn-ghost inline-flex items-center justify-center px-8 h-[54px] text-[13px] tracking-[0.22em] uppercase">
-              Descubre el método
+            <a href="#simulador" class="btn-ghost inline-flex items-center justify-center gap-2.5 px-8 h-[56px] text-[13px] tracking-[0.2em] uppercase">
+              Prueba el simulador gratis
+              <span aria-hidden="true">→</span>
             </a>
           </div>
+          <p data-hero="4b" class="mt-4 text-[12px] text-mist/70 font-light">
+            Precio de lanzamiento con cupón de invitación · Garantía de satisfacción de 30 días
+          </p>
 
           <div data-hero="5" class="mt-14 flex flex-wrap gap-x-10 gap-y-3 text-[11px] tracking-[0.28em] uppercase text-mist/80">
             <span>100% en español</span>
@@ -419,6 +506,95 @@
     <div class="hairline max-w-4xl mx-auto" aria-hidden="true"></div>
 
     <!-- ============================================================
+         SIMULADOR INTERACTIVO — prueba 3 preguntas reales de examen
+         (micro-conversión: demuestra el producto antes de pedir el pago)
+    ============================================================ -->
+    <section id="simulador" class="relative py-28 md:py-36 overflow-hidden">
+      <span class="watermark absolute -top-6 left-2 md:left-10 text-[180px] md:text-[300px]" data-parallax="-8" aria-hidden="true">?</span>
+      <div class="absolute top-1/4 right-0 w-[540px] h-[540px] glow-viola blur-2xl" aria-hidden="true"></div>
+
+      <div class="relative max-w-3xl mx-auto px-6">
+        <p class="kicker mb-6 text-center" data-reveal>Pruébalo ahora · Sin registro</p>
+        <h2 class="font-display text-4xl md:text-6xl font-light text-frost text-center leading-[1.1]" data-reveal>
+          ¿Aprobarías hoy?<br /><span class="italic text-violalight">Tres preguntas reales.</span>
+        </h2>
+        <p class="mt-8 text-center text-mist text-lg font-light max-w-2xl mx-auto leading-relaxed" data-reveal>
+          Estas son del mismo estilo y dificultad que las del examen oficial. Respóndelas sin buscar en Google —
+          lo importante no es tu puntaje, es <span class="text-bone">descubrir qué no sabías que no sabías</span>.
+        </p>
+
+        <!-- Consola del simulador -->
+        <div class="mt-14 border border-viola/25 bg-ink/70 shadow-[0_40px_100px_-40px_rgba(0,0,0,.9)]" data-reveal>
+
+          <!-- Cabecera -->
+          <div class="flex items-center justify-between gap-4 px-6 md:px-9 py-5 border-b border-viola/15">
+            <div class="flex items-center gap-3">
+              <span class="w-2 h-2 rounded-full bg-viola animate-pulse" aria-hidden="true"></span>
+              <span class="text-[10px] tracking-[0.28em] uppercase text-mist">Simulador Alleanza</span>
+            </div>
+            <div class="flex items-center gap-2" id="quiz-pips" aria-hidden="true">
+              <span class="quiz-pip w-6 h-[3px] bg-viola"></span>
+              <span class="quiz-pip w-6 h-[3px] bg-viola/25"></span>
+              <span class="quiz-pip w-6 h-[3px] bg-viola/25"></span>
+            </div>
+          </div>
+
+          <!-- Pregunta activa -->
+          <div id="quiz-body" class="px-6 md:px-9 py-9">
+            <p class="text-[10px] tracking-[0.28em] uppercase text-viola mb-4">
+              <span id="quiz-topic">Seguro de Vida</span> · Pregunta <span id="quiz-num">1</span> de 3
+            </p>
+            <h3 id="quiz-question" class="font-display text-xl md:text-2xl font-light text-frost leading-snug">
+              Un asegurado deja de pagar su prima. ¿Qué disposición de la póliza le da tiempo adicional para pagar sin perder la cobertura?
+            </h3>
+
+            <div id="quiz-options" class="mt-7 space-y-3" role="group" aria-label="Opciones de respuesta"></div>
+
+            <!-- Explicación -->
+            <div id="quiz-explain">
+              <div class="mt-7 border-l-2 border-viola pl-6 py-1">
+                <p class="text-[10px] tracking-[0.28em] uppercase text-violalight mb-2.5" id="quiz-verdict">Correcto</p>
+                <p class="text-mist font-light leading-relaxed" id="quiz-explain-text"></p>
+              </div>
+              <button type="button" id="quiz-next"
+                      class="btn-royal mt-7 inline-flex items-center justify-center gap-2.5 px-8 h-[50px] text-[12px] tracking-[0.2em] uppercase">
+                <span id="quiz-next-label">Siguiente pregunta</span>
+                <span aria-hidden="true">→</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Resultado final -->
+          <div id="quiz-result" class="hidden px-6 md:px-9 py-11 text-center">
+            <p class="text-[10px] tracking-[0.28em] uppercase text-viola mb-5">Tu diagnóstico</p>
+            <p class="font-display text-6xl md:text-7xl font-extralight text-violalight"><span id="quiz-score">0</span><span class="text-3xl text-mist"> / 3</span></p>
+            <h3 id="quiz-headline" class="mt-7 font-display text-2xl md:text-3xl font-light text-frost leading-snug"></h3>
+            <p id="quiz-message" class="mt-5 text-mist font-light leading-relaxed max-w-xl mx-auto"></p>
+
+            <div class="mt-9 flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <a href="#inversion" class="btn-royal inline-flex items-center justify-center px-9 h-[54px] text-[12px] tracking-[0.2em] uppercase w-full sm:w-auto">
+                Quiero el programa completo
+              </a>
+              <button type="button" id="quiz-restart" class="btn-ghost inline-flex items-center justify-center px-7 h-[54px] text-[12px] tracking-[0.2em] uppercase w-full sm:w-auto">
+                Intentar de nuevo
+              </button>
+            </div>
+            <p class="mt-7 text-[13px] text-mist/70 font-light max-w-lg mx-auto leading-relaxed">
+              El programa incluye <span class="text-bone">100+ preguntas como estas</span>, organizadas por tema y dificultad,
+              con simulacros cronometrados completos y un diagnóstico que te dice en qué tema estás débil.
+            </p>
+          </div>
+        </div>
+
+        <p class="mt-6 text-center text-xs text-mist/60 font-light" data-reveal>
+          Preguntas de práctica con fines educativos. No son preguntas oficiales del examen estatal.
+        </p>
+      </div>
+    </section>
+
+    <div class="hairline max-w-4xl mx-auto" aria-hidden="true"></div>
+
+    <!-- ============================================================
          CAPA 03 — LAS CAPAS DEL CONOCIMIENTO (excavación interactiva)
     ============================================================ -->
     <section id="capas" class="relative py-28 md:py-40 overflow-hidden">
@@ -578,6 +754,82 @@
     <div class="hairline max-w-4xl mx-auto" aria-hidden="true"></div>
 
     <!-- ============================================================
+         COMPARATIVA — por qué no es lo mismo que estudiar solo
+    ============================================================ -->
+    <section id="comparativa" class="relative py-28 md:py-36 overflow-hidden">
+      <div class="relative max-w-5xl mx-auto px-6">
+        <p class="kicker mb-6 text-center" data-reveal>La diferencia real</p>
+        <h2 class="font-display text-4xl md:text-6xl font-light text-frost text-center leading-[1.1]" data-reveal>
+          Tres caminos.<br /><span class="italic text-violalight">Uno te lleva a aprobar.</span>
+        </h2>
+
+        <div class="mt-16 grid md:grid-cols-3 gap-5" data-reveal>
+
+          <!-- Por tu cuenta -->
+          <div class="cmp-col border border-viola/12 bg-ink/40 p-7 md:p-8">
+            <p class="text-[10px] tracking-[0.28em] uppercase text-mist/70">Camino 1</p>
+            <h3 class="mt-3 font-display text-xl font-light text-frost">Por tu cuenta</h3>
+            <p class="mt-1 text-[13px] text-mist/70 font-light">Manual + YouTube</p>
+            <div class="hairline my-6 opacity-40"></div>
+            <ul class="space-y-3.5 text-[14px] font-light">
+              <li class="flex gap-3 text-mist/80"><span class="text-mist/40 shrink-0">✕</span>Inglés técnico, sin traducción</li>
+              <li class="flex gap-3 text-mist/80"><span class="text-mist/40 shrink-0">✕</span>600 páginas sin prioridades</li>
+              <li class="flex gap-3 text-mist/80"><span class="text-mist/40 shrink-0">✕</span>Sin clases ni acompañamiento</li>
+              <li class="flex gap-3 text-mist/80"><span class="text-mist/40 shrink-0">✕</span>No sabes qué te falta hasta el examen</li>
+              <li class="flex gap-3 text-mist/80"><span class="text-mist/40 shrink-0">✕</span>Nadie responde tus dudas</li>
+            </ul>
+            <div class="hairline my-6 opacity-40"></div>
+            <p class="font-display text-2xl font-light text-mist">$0 <span class="text-[13px] font-sans">+ $150 por cada reintento</span></p>
+          </div>
+
+          <!-- Curso genérico -->
+          <div class="cmp-col border border-viola/12 bg-ink/40 p-7 md:p-8">
+            <p class="text-[10px] tracking-[0.28em] uppercase text-mist/70">Camino 2</p>
+            <h3 class="mt-3 font-display text-xl font-light text-frost">Curso genérico</h3>
+            <p class="mt-1 text-[13px] text-mist/70 font-light">En inglés, para todos</p>
+            <div class="hairline my-6 opacity-40"></div>
+            <ul class="space-y-3.5 text-[14px] font-light">
+              <li class="flex gap-3 text-mist/80"><span class="text-mist/40 shrink-0">✕</span>En inglés, sin contexto cultural</li>
+              <li class="flex gap-3 text-mist/80"><span class="text-mist/40 shrink-0">✕</span>Cubre todo por igual, sin foco</li>
+              <li class="flex gap-3 text-mist/80"><span class="text-mist/40 shrink-0">✕</span>Video grabado, sin clases en vivo</li>
+              <li class="flex gap-3 text-mist/80"><span class="text-mist/40 shrink-0">✕</span>Quizzes sin diagnóstico por tema</li>
+              <li class="flex gap-3 text-mist/80"><span class="text-mist/40 shrink-0">✕</span>Soporte por ticket, en inglés</li>
+            </ul>
+            <div class="hairline my-6 opacity-40"></div>
+            <p class="font-display text-2xl font-light text-mist">$200 – $500</p>
+          </div>
+
+          <!-- Alleanza -->
+          <div class="cmp-col featured relative border p-7 md:p-8 shadow-[0_30px_80px_-30px_rgba(153,89,216,.4)]">
+            <span class="absolute -top-[11px] left-7 bg-gradient-to-r from-[#9959d8] to-[#7c46a6] text-white text-[9px] tracking-[0.25em] uppercase font-bold px-3 py-1">
+              Recomendado
+            </span>
+            <p class="text-[10px] tracking-[0.28em] uppercase text-violalight">Camino 3</p>
+            <h3 class="mt-3 font-display text-xl font-light text-frost">Alleanza Academy</h3>
+            <p class="mt-1 text-[13px] text-violasoft font-light">En español, enfocado en aprobar</p>
+            <div class="hairline my-6"></div>
+            <ul class="space-y-3.5 text-[14px] font-light">
+              <li class="flex gap-3 text-bone"><span class="text-[#1dd4b7] shrink-0">✓</span>100% en español, términos bilingües</li>
+              <li class="flex gap-3 text-bone"><span class="text-[#1dd4b7] shrink-0">✓</span>Solo lo que realmente se examina</li>
+              <li class="flex gap-3 text-bone"><span class="text-[#1dd4b7] shrink-0">✓</span>Clases en vivo cada 2 semanas · Dallas o Zoom</li>
+              <li class="flex gap-3 text-bone"><span class="text-[#1dd4b7] shrink-0">✓</span>Simulacros reales + diagnóstico por tema</li>
+              <li class="flex gap-3 text-bone"><span class="text-[#1dd4b7] shrink-0">✓</span>Q&amp;A directo con Jesus en &lt; 24 h</li>
+            </ul>
+            <div class="hairline my-6"></div>
+            <p class="font-display text-2xl font-light text-violalight">$107 <span class="text-[13px] font-sans text-mist line-through">$259</span></p>
+          </div>
+        </div>
+
+        <p class="mt-10 text-center text-mist font-light max-w-2xl mx-auto leading-relaxed" data-reveal>
+          Un solo reintento del examen cuesta $150. <span class="text-bone">El programa completo cuesta menos que eso</span> —
+          y está diseñado para que no tengas que reintentarlo.
+        </p>
+      </div>
+    </section>
+
+    <div class="hairline max-w-4xl mx-auto" aria-hidden="true"></div>
+
+    <!-- ============================================================
          EL MAPA DE LA MAESTRÍA (recorrido)
     ============================================================ -->
     <section id="mapa" class="relative py-28 md:py-40 overflow-hidden bg-ink/40">
@@ -659,6 +911,79 @@
           </div>
         </div>
         <p class="mt-4 text-center text-xs text-mist/60 font-light" data-reveal>Los resultados varían según el esfuerzo individual.</p>
+      </div>
+    </section>
+
+    <div class="hairline max-w-4xl mx-auto" aria-hidden="true"></div>
+
+    <!-- ============================================================
+         CALIFICACIÓN — para quién es y para quién no
+    ============================================================ -->
+    <section id="para-quien" class="relative py-28 md:py-36 overflow-hidden">
+      <div class="absolute bottom-0 -left-40 w-[520px] h-[520px] glow-royal blur-2xl" aria-hidden="true"></div>
+
+      <div class="relative max-w-5xl mx-auto px-6">
+        <p class="kicker mb-6 text-center" data-reveal>Honestidad antes de cobrar</p>
+        <h2 class="font-display text-4xl md:text-6xl font-light text-frost text-center leading-[1.1]" data-reveal>
+          Esto no es para todos.<br /><span class="italic text-violalight">¿Es para ti?</span>
+        </h2>
+
+        <div class="mt-16 grid md:grid-cols-2 gap-6">
+
+          <!-- Sí es para ti -->
+          <div class="border border-viola/40 bg-ink/60 p-8 md:p-10" data-reveal>
+            <p class="text-[10px] tracking-[0.28em] uppercase text-[#1dd4b7] mb-6">Sí, es para ti si…</p>
+            <ul class="space-y-5">
+              <li class="flex gap-4">
+                <span class="text-[#1dd4b7] shrink-0 mt-0.5" aria-hidden="true">✓</span>
+                <span class="text-mist font-light leading-relaxed">Vas a presentar el examen de <span class="text-bone">Vida, Salud, Accidentes o General Lines</span> en cualquier estado.</span>
+              </li>
+              <li class="flex gap-4">
+                <span class="text-[#1dd4b7] shrink-0 mt-0.5" aria-hidden="true">✓</span>
+                <span class="text-mist font-light leading-relaxed">Trabajas de tiempo completo y necesitas estudiar en <span class="text-bone">bloques de 25–30 minutos</span>, no en maratones.</span>
+              </li>
+              <li class="flex gap-4">
+                <span class="text-[#1dd4b7] shrink-0 mt-0.5" aria-hidden="true">✓</span>
+                <span class="text-mist font-light leading-relaxed">Ya fallaste una vez y <span class="text-bone">no quieres volver a perder los $150</span> del examen.</span>
+              </li>
+              <li class="flex gap-4">
+                <span class="text-[#1dd4b7] shrink-0 mt-0.5" aria-hidden="true">✓</span>
+                <span class="text-mist font-light leading-relaxed">Prefieres estudiar en <span class="text-bone">español</span>, aunque el examen oficial sea en inglés.</span>
+              </li>
+              <li class="flex gap-4">
+                <span class="text-[#1dd4b7] shrink-0 mt-0.5" aria-hidden="true">✓</span>
+                <span class="text-mist font-light leading-relaxed">Quieres saber <span class="text-bone">exactamente qué estudiar</span> en lugar de leer 600 páginas.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- No es para ti -->
+          <div class="border border-viola/12 bg-ink/30 p-8 md:p-10" data-reveal data-reveal-delay="0.12">
+            <p class="text-[10px] tracking-[0.28em] uppercase text-mist/60 mb-6">No, no es para ti si…</p>
+            <ul class="space-y-5">
+              <li class="flex gap-4">
+                <span class="text-mist/40 shrink-0 mt-0.5" aria-hidden="true">✕</span>
+                <span class="text-mist/75 font-light leading-relaxed">Buscas un atajo para <span class="text-mist">evadir el proceso oficial</span> de licenciamiento de tu estado.</span>
+              </li>
+              <li class="flex gap-4">
+                <span class="text-mist/40 shrink-0 mt-0.5" aria-hidden="true">✕</span>
+                <span class="text-mist/75 font-light leading-relaxed">No puedes dedicar <span class="text-mist">25–30 minutos al día</span> durante unas tres semanas.</span>
+              </li>
+              <li class="flex gap-4">
+                <span class="text-mist/40 shrink-0 mt-0.5" aria-hidden="true">✕</span>
+                <span class="text-mist/75 font-light leading-relaxed">Esperas una <span class="text-mist">garantía de aprobación</span>. No existe — y desconfía de quien te la prometa.</span>
+              </li>
+              <li class="flex gap-4">
+                <span class="text-mist/40 shrink-0 mt-0.5" aria-hidden="true">✕</span>
+                <span class="text-mist/75 font-light leading-relaxed">Ya tienes tu <span class="text-mist">licencia activa</span> y no necesitas preparación para el examen.</span>
+              </li>
+              <li class="flex gap-4">
+                <span class="text-mist/40 shrink-0 mt-0.5" aria-hidden="true">✕</span>
+                <span class="text-mist/75 font-light leading-relaxed">Quieres que alguien <span class="text-mist">estudie por ti</span>. El método funciona, pero el trabajo es tuyo.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -828,7 +1153,7 @@
         <div class="mt-16 grid md:grid-cols-2 gap-6 items-stretch">
 
           <!-- Acceso general -->
-          <article class="border border-viola/15 bg-abyss p-10 md:p-12 flex flex-col" data-reveal>
+          <article class="price-card border border-viola/15 bg-abyss p-10 md:p-12 flex flex-col" data-reveal>
             <p class="text-[11px] tracking-[0.3em] uppercase text-mist">Acceso general</p>
             <p class="mt-6 font-display text-6xl text-frost">$259 <span class="text-lg text-mist font-sans font-light">USD</span></p>
             <p class="mt-2 text-sm text-mist font-light">Pago único · Todas las capas incluidas</p>
@@ -849,8 +1174,8 @@
           </article>
 
           <!-- Agentes invitados -->
-          <article class="relative border border-viola/60 bg-abyss p-10 md:p-12 flex flex-col shadow-[0_30px_80px_-30px_rgba(201,165,94,.35)]" data-reveal data-reveal-delay="0.12">
-            <span class="absolute -top-[13px] left-10 bg-gradient-to-r from-[#d8b876] to-[#b28b45] text-abyss text-[10px] tracking-[0.25em] uppercase font-bold px-4 py-1.5">
+          <article class="price-card relative border border-viola/60 bg-abyss p-10 md:p-12 flex flex-col shadow-[0_30px_80px_-30px_rgba(153,89,216,.45)]" data-reveal data-reveal-delay="0.12">
+            <span class="absolute -top-[13px] left-10 bg-gradient-to-r from-[#9959d8] to-[#7c46a6] text-white text-[10px] tracking-[0.25em] uppercase font-bold px-4 py-1.5">
               Con cupón de invitación
             </span>
             <p class="text-[11px] tracking-[0.3em] uppercase text-violalight">Agentes invitados por Alleanza Insurance</p>
@@ -869,11 +1194,40 @@
           </article>
         </div>
 
-        <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-x-10 gap-y-3 text-[11px] tracking-[0.25em] uppercase text-mist" data-reveal>
-          <span class="flex items-center gap-2.5"><span class="w-1 h-1 rounded-full bg-viola"></span>Garantía de satisfacción de 30 días</span>
-          <span class="flex items-center gap-2.5"><span class="w-1 h-1 rounded-full bg-viola"></span>Pago seguro con Stripe</span>
-          <span class="flex items-center gap-2.5"><span class="w-1 h-1 rounded-full bg-viola"></span>Acceso inmediato al inscribirte</span>
+        <!-- Reversión de riesgo -->
+        <div class="mt-14 border border-viola/25 bg-abyss/70 p-8 md:p-10" data-reveal>
+          <div class="grid md:grid-cols-3 gap-8 md:gap-10">
+            <div class="text-center md:text-left">
+              <p class="font-display text-3xl font-extralight text-violalight">30 días</p>
+              <p class="text-[10px] tracking-[0.25em] uppercase text-viola mt-2 mb-3">Garantía de satisfacción</p>
+              <p class="text-sm text-mist font-light leading-relaxed">
+                Entra, mira las lecciones, haz los simulacros. Si no es para ti, escríbenos dentro de los 30 días
+                y gestionamos tu devolución. Sin preguntas incómodas.
+              </p>
+            </div>
+            <div class="text-center md:text-left">
+              <p class="font-display text-3xl font-extralight text-violalight">Stripe</p>
+              <p class="text-[10px] tracking-[0.25em] uppercase text-viola mt-2 mb-3">Pago 100% seguro</p>
+              <p class="text-sm text-mist font-light leading-relaxed">
+                El cobro lo procesa Stripe, el mismo sistema que usan miles de empresas en EE.UU.
+                Nosotros nunca vemos ni guardamos tu tarjeta.
+              </p>
+            </div>
+            <div class="text-center md:text-left">
+              <p class="font-display text-3xl font-extralight text-violalight">Hoy mismo</p>
+              <p class="text-[10px] tracking-[0.25em] uppercase text-viola mt-2 mb-3">Acceso inmediato</p>
+              <p class="text-sm text-mist font-light leading-relaxed">
+                No esperas nada: al inscribirte entras al material completo y quedas anotado
+                para la próxima clase en vivo.
+              </p>
+            </div>
+          </div>
         </div>
+
+        <p class="mt-8 text-center text-mist font-light max-w-2xl mx-auto leading-relaxed" data-reveal>
+          El riesgo real no es invertir $107. <span class="text-bone">Es presentar el examen sin estar listo</span>
+          y perder los $150 — otra vez.
+        </p>
       </div>
     </section>
 
@@ -965,10 +1319,53 @@
         </div>
 
         <div class="mt-16 text-center" data-reveal>
-          <a href="#inversion" class="btn-royal inline-flex items-center justify-center px-10 h-[54px] text-[12px] tracking-[0.22em] uppercase">
-            Comenzar mi preparación
+          <p class="text-mist font-light mb-6">¿Te queda otra duda? Escríbeme directo por WhatsApp — contesto yo.</p>
+          <a href="https://wa.me/12149974650?text=Hola%20Jesus%2C%20tengo%20una%20pregunta%20sobre%20el%20curso%20de%20licencia%20de%20seguros"
+             class="btn-ghost inline-flex items-center justify-center gap-2.5 px-8 h-[52px] text-[12px] tracking-[0.2em] uppercase">
+            Preguntar por WhatsApp
+            <span aria-hidden="true">→</span>
           </a>
         </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CIERRE — decisión final
+    ============================================================ -->
+    <section id="cierre" class="relative py-32 md:py-44 overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-royal/10 to-transparent" aria-hidden="true"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[520px] glow-viola blur-3xl" aria-hidden="true"></div>
+
+      <div class="relative max-w-3xl mx-auto px-6 text-center">
+        <p class="kicker mb-8" data-reveal>La decisión</p>
+        <h2 class="font-display text-[38px] md:text-6xl font-light text-frost leading-[1.08]" data-reveal>
+          En 30 días vas a estar<br />
+          <span class="italic text-violalight">en uno de estos dos lugares.</span>
+        </h2>
+
+        <div class="mt-14 grid sm:grid-cols-2 gap-5 text-left" data-reveal>
+          <div class="border border-viola/10 bg-ink/30 p-7">
+            <p class="text-[10px] tracking-[0.28em] uppercase text-mist/60 mb-4">Si no haces nada</p>
+            <p class="text-mist/75 font-light leading-relaxed">
+              Sigues postergando el examen. El manual sigue sin abrirse.
+              La licencia sigue siendo un “algún día” — y tu carrera en seguros sigue en pausa.
+            </p>
+          </div>
+          <div class="border border-viola/45 bg-ink/60 p-7 shadow-[0_25px_60px_-25px_rgba(153,89,216,.4)]">
+            <p class="text-[10px] tracking-[0.28em] uppercase text-violalight mb-4">Si empiezas hoy</p>
+            <p class="text-bone font-light leading-relaxed">
+              Terminaste el programa, sabes exactamente qué se examina, practicaste en condiciones reales
+              y entras al examen con la calma de quien ya lo hizo <span class="text-violalight">veinte veces</span>.
+            </p>
+          </div>
+        </div>
+
+        <a href="#inversion" class="btn-royal mt-14 inline-flex items-center justify-center px-12 h-[60px] text-[13px] tracking-[0.2em] uppercase" data-reveal>
+          Empezar ahora · $107 con cupón
+        </a>
+        <p class="mt-5 text-[13px] text-mist/70 font-light" data-reveal>
+          Cohorte fundadora · máximo 50 lugares · garantía de 30 días
+        </p>
       </div>
     </section>
 
@@ -1070,6 +1467,34 @@
     </div>
   </footer>
 
+  <!-- ============================================================
+       CTA STICKY MÓVIL — siempre a un toque de inscribirse
+  ============================================================ -->
+  <div id="sticky-cta" class="fixed bottom-0 inset-x-0 z-50 lg:hidden bg-abyss/95 backdrop-blur-xl border-t border-viola/25 px-4 py-3"
+       role="complementary" aria-label="Acceso rápido a la inscripción">
+    <div class="flex items-center gap-3">
+      <div class="leading-tight min-w-0 flex-1">
+        <p class="text-[13px] font-semibold text-frost truncate">Cohorte fundadora · $107</p>
+        <p class="text-[11px] text-mist truncate"><span class="line-through opacity-70">$259</span> con cupón · garantía 30 días</p>
+      </div>
+      <a href="#inversion" class="btn-royal inline-flex items-center justify-center px-6 h-12 text-[11px] tracking-[0.18em] uppercase shrink-0">
+        Inscribirme
+      </a>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       WHATSAPP FLOTANTE — canal principal para audiencia hispana
+  ============================================================ -->
+  <a id="wa-float"
+     href="https://wa.me/12149974650?text=Hola%20Jesus%2C%20vi%20la%20p%C3%A1gina%20de%20Alleanza%20Academy%20y%20tengo%20una%20pregunta%20sobre%20el%20curso"
+     class="fixed z-50 right-5 bottom-24 lg:bottom-8 w-14 h-14 rounded-full bg-[#25d366] flex items-center justify-center"
+     aria-label="Escribir a Jesus por WhatsApp">
+    <svg viewBox="0 0 24 24" class="w-7 h-7 fill-white" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.347-.348.52-.522.174-.174.232-.298.347-.497.116-.198.058-.372-.014-.521-.072-.15-.643-1.549-.879-2.121-.236-.572-.478-.494-.658-.503-.171-.008-.367-.01-.563-.01-.196 0-.514.074-.783.372-.269.297-1.024 1.002-1.024 2.444s1.05 2.835 1.196 3.031c.146.198 2.064 3.15 5.003 4.418.7.302 1.246.483 1.672.618.864.274 1.65.235 2.271.143.694-.104 2.14-.875 2.44-1.72.302-.845.302-1.57.212-1.72-.09-.148-.33-.24-.626-.388zM12.05 21.785h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.999-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.889-9.884a9.82 9.82 0 016.99 2.898 9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.888 9.884zM20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.359.101 11.945c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652a11.882 11.882 0 005.71 1.447h.006c6.585 0 11.946-5.359 11.949-11.945a11.87 11.87 0 00-3.48-8.401z"/>
+    </svg>
+  </a>
+
   <!-- API del reproductor de Vimeo -->
   <script src="https://player.vimeo.com/api/player.js"></script>
 
@@ -1091,6 +1516,256 @@
       var onScrollNav = function () { nav.classList.toggle('scrolled', window.scrollY > 30); };
       window.addEventListener('scroll', onScrollNav, { passive: true });
       onScrollNav();
+
+      /* ---------- Barra de progreso de lectura ---------- */
+      (function progress() {
+        var bar = document.getElementById('progress');
+        if (!bar) return;
+        function update() {
+          var h = document.documentElement.scrollHeight - window.innerHeight;
+          var pct = h > 0 ? (window.scrollY / h) * 100 : 0;
+          bar.style.width = Math.min(100, Math.max(0, pct)) + '%';
+        }
+        window.addEventListener('scroll', update, { passive: true });
+        window.addEventListener('resize', update);
+        update();
+      })();
+
+      /* ---------- Menú móvil ---------- */
+      (function mobileMenu() {
+        var burger = document.getElementById('burger');
+        var panel = document.getElementById('menu-panel');
+        if (!burger || !panel) return;
+
+        function close() {
+          panel.classList.remove('open');
+          burger.setAttribute('aria-expanded', 'false');
+          burger.setAttribute('aria-label', 'Abrir menú');
+        }
+        burger.addEventListener('click', function () {
+          var open = panel.classList.toggle('open');
+          burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+          burger.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+        });
+        // Cierra al elegir un destino o al pulsar Escape
+        panel.querySelectorAll('.menu-link').forEach(function (link) {
+          link.addEventListener('click', close);
+        });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') close();
+        });
+      })();
+
+      /* ---------- CTA sticky móvil + WhatsApp flotante ----------
+         Aparecen al pasar el hero; el sticky se retira cuando el visitante
+         ya está viendo las secciones de precio o cierre (evita redundancia). */
+      (function floatingCtas() {
+        var sticky = document.getElementById('sticky-cta');
+        var wa = document.getElementById('wa-float');
+        var hero = document.getElementById('hero');
+        var pricing = document.getElementById('inversion');
+        var closing = document.getElementById('cierre');
+        if (!('IntersectionObserver' in window)) return;
+
+        var pastHero = false, onOffer = false;
+        function sync() {
+          if (wa) wa.classList.toggle('show', pastHero);
+          if (sticky) sticky.classList.toggle('show', pastHero && !onOffer);
+        }
+
+        if (hero) {
+          new IntersectionObserver(function (entries) {
+            pastHero = !entries[0].isIntersecting;
+            sync();
+          }, { threshold: 0.15 }).observe(hero);
+        }
+        var offerObserver = new IntersectionObserver(function () {
+          onOffer = [pricing, closing].some(function (el) {
+            if (!el) return false;
+            var r = el.getBoundingClientRect();
+            return r.top < window.innerHeight * 0.85 && r.bottom > window.innerHeight * 0.15;
+          });
+          sync();
+        }, { threshold: [0, 0.15, 0.5] });
+        [pricing, closing].forEach(function (el) { if (el) offerObserver.observe(el); });
+      })();
+
+      /* ==========================================================
+         SIMULADOR INTERACTIVO — 3 preguntas de práctica
+         Preguntas de estilo representativo del examen (no oficiales).
+      ========================================================== */
+      (function simulator() {
+        var QUESTIONS = [
+          {
+            topic: 'Seguro de Vida',
+            q: 'Un asegurado deja de pagar su prima. ¿Qué disposición de la póliza le da tiempo adicional para pagar sin perder la cobertura?',
+            options: [
+              'Free look period (período de revisión)',
+              'Grace period (período de gracia)',
+              'Reinstatement (rehabilitación)',
+              'Incontestability (incontestabilidad)'
+            ],
+            correct: 1,
+            why: 'El período de gracia (normalmente 30 o 31 días) mantiene la póliza en vigor aunque la prima esté vencida. El “free look” sirve para cancelar y recibir reembolso al inicio; el reinstatement revive una póliza que ya caducó; la incontestabilidad limita el tiempo que tiene la aseguradora para impugnar la póliza.'
+          },
+          {
+            topic: 'Seguro de Salud',
+            q: 'En un plan de salud, ¿qué cantidad debe pagar el asegurado de su propio bolsillo ANTES de que la aseguradora empiece a compartir los costos?',
+            options: [
+              'El copago (copay)',
+              'El coseguro (coinsurance)',
+              'La prima (premium)',
+              'El deducible (deductible)'
+            ],
+            correct: 3,
+            why: 'El deducible es lo que pagas antes de que la aseguradora comience a cubrir. El copago es una cantidad fija por servicio, el coseguro es el porcentaje que compartes DESPUÉS del deducible, y la prima es lo que pagas cada mes por tener el plan.'
+          },
+          {
+            topic: 'Regulaciones y Ética',
+            q: 'Un agente usa información incompleta o engañosa para convencer a un cliente de cancelar su póliza actual y comprar una nueva, sin que le convenga. Esta práctica prohibida se llama:',
+            options: [
+              'Twisting',
+              'Rebating',
+              'Commingling',
+              'Coercion'
+            ],
+            correct: 0,
+            why: 'Twisting es persuadir con información engañosa para que alguien reemplace una póliza. Rebating es devolver parte de la comisión como incentivo; commingling es mezclar el dinero del cliente con el propio; coercion es usar presión indebida. Los cuatro son prohibidos — y los cuatro aparecen en el examen.'
+          }
+        ];
+
+        var elBody = document.getElementById('quiz-body');
+        var elResult = document.getElementById('quiz-result');
+        if (!elBody || !elResult) return;
+
+        var elTopic = document.getElementById('quiz-topic');
+        var elNum = document.getElementById('quiz-num');
+        var elQ = document.getElementById('quiz-question');
+        var elOpts = document.getElementById('quiz-options');
+        var elExplain = document.getElementById('quiz-explain');
+        var elExplainText = document.getElementById('quiz-explain-text');
+        var elVerdict = document.getElementById('quiz-verdict');
+        var elNext = document.getElementById('quiz-next');
+        var elNextLabel = document.getElementById('quiz-next-label');
+        var pips = document.querySelectorAll('#quiz-pips .quiz-pip');
+
+        var index = 0, score = 0, answered = false;
+        var LETTERS = ['A', 'B', 'C', 'D'];
+
+        function collapseExplain() {
+          elExplain.classList.remove('open');
+          elExplain.style.maxHeight = '0px';
+        }
+
+        function render() {
+          var item = QUESTIONS[index];
+          answered = false;
+          elTopic.textContent = item.topic;
+          elNum.textContent = String(index + 1);
+          elQ.textContent = item.q;
+          collapseExplain();
+
+          pips.forEach(function (p, i) {
+            p.className = 'quiz-pip w-6 h-[3px] ' + (i <= index ? 'bg-viola' : 'bg-viola/25');
+          });
+
+          elOpts.innerHTML = '';
+          item.options.forEach(function (text, i) {
+            var btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'quiz-opt w-full flex items-start gap-4 text-left px-5 py-4 bg-abyss/40';
+            btn.innerHTML =
+              '<span class="font-display text-viola/80 text-sm shrink-0 w-4">' + LETTERS[i] + '</span>' +
+              '<span class="flex-1 text-[15px] text-bone font-light leading-snug">' + text + '</span>' +
+              '<span class="mark text-lg shrink-0"></span>';
+            btn.addEventListener('click', function () { choose(i, btn); });
+            elOpts.appendChild(btn);
+          });
+
+          elNextLabel.textContent = index === QUESTIONS.length - 1 ? 'Ver mi diagnóstico' : 'Siguiente pregunta';
+        }
+
+        function choose(i, btn) {
+          if (answered) return;
+          answered = true;
+          var item = QUESTIONS[index];
+          var right = i === item.correct;
+          if (right) score++;
+
+          var buttons = elOpts.querySelectorAll('.quiz-opt');
+          buttons.forEach(function (b, bi) {
+            b.setAttribute('disabled', 'disabled');
+            var mark = b.querySelector('.mark');
+            if (bi === item.correct) {
+              b.setAttribute('data-state', bi === i ? 'correct' : 'reveal');
+              mark.textContent = '✓';
+              mark.className = 'mark text-lg shrink-0 text-[#1dd4b7]';
+            } else if (bi === i) {
+              b.setAttribute('data-state', 'wrong');
+              mark.textContent = '✕';
+              mark.className = 'mark text-lg shrink-0 text-[#f05a6e]';
+            }
+          });
+
+          elVerdict.textContent = right ? 'Correcto' : 'Incorrecto — y aquí está el porqué';
+          elVerdict.className = 'text-[10px] tracking-[0.28em] uppercase mb-2.5 ' + (right ? 'text-[#1dd4b7]' : 'text-[#f05a6e]');
+          elExplainText.textContent = item.why;
+          elExplain.classList.add('open');
+          elExplain.style.maxHeight = elExplain.scrollHeight + 'px';
+        }
+
+        function showResult() {
+          elBody.classList.add('hidden');
+          elResult.classList.remove('hidden');
+          document.getElementById('quiz-score').textContent = String(score);
+
+          var headline = document.getElementById('quiz-headline');
+          var message = document.getElementById('quiz-message');
+
+          if (score === 3) {
+            headline.textContent = 'Buena base. Ahora hazla a prueba de examen.';
+            message.textContent = 'Tres de tres — pero el examen real trae más de 100 preguntas, y las que deciden si apruebas son justo las que nadie te explicó. El programa te lleva de "sé algo" a "no falla ninguna".';
+          } else if (score === 2) {
+            headline.textContent = 'Estás cerca. Y "cerca" es exactamente lo que reprueba.';
+            message.textContent = 'Una fallada de tres. En el examen real, ese margen es la diferencia entre tu licencia y perder los $150. Lo bueno: ya sabes en qué tema estás débil — y eso es precisamente lo que el método corrige.';
+          } else if (score === 1) {
+            headline.textContent = 'Esto no es falta de capacidad. Es falta del material correcto.';
+            message.textContent = 'Nadie nace sabiendo qué es el twisting o cómo funciona un deducible. Se aprende — en español, en lecciones de 12 minutos, y practicando hasta que las respuestas salen solas.';
+          } else {
+            headline.textContent = 'Perfecto. Empezamos justo desde aquí.';
+            message.textContent = 'Cero de tres es el punto de partida más común, y es totalmente normal si nunca has estudiado seguros. Jesus empezó igual y aprobó en dos noches con el método correcto. Aquí lo tienes completo.';
+          }
+        }
+
+        elNext.addEventListener('click', function () {
+          if (!answered) return;
+          if (index < QUESTIONS.length - 1) {
+            index++;
+            render();
+            elBody.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
+          } else {
+            showResult();
+            elResult.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
+          }
+        });
+
+        document.getElementById('quiz-restart').addEventListener('click', function () {
+          index = 0; score = 0;
+          elResult.classList.add('hidden');
+          elBody.classList.remove('hidden');
+          render();
+          elBody.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
+        });
+
+        // Recalcula la altura de la explicación abierta al redimensionar
+        window.addEventListener('resize', function () {
+          if (elExplain.classList.contains('open')) {
+            elExplain.style.maxHeight = elExplain.scrollHeight + 'px';
+          }
+        });
+
+        render();
+      })();
 
       /* ==========================================================
          POLVO EN SUSPENSIÓN (canvas global)
@@ -1262,8 +1937,9 @@
           .fromTo('[data-hero="2"]', { opacity: 0, y: 42 }, { opacity: 1, y: 0, duration: 1.25 }, 0.35)
           .fromTo('[data-hero="3"]', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 1.1 }, 0.65)
           .fromTo('[data-hero="4"]', { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 1 }, 0.9)
-          .fromTo('[data-hero="5"]', { opacity: 0 }, { opacity: 1, duration: 1.2 }, 1.15)
-          .fromTo('[data-hero="6"]', { opacity: 0 }, { opacity: 1, duration: 1.4 }, 1.4);
+          .fromTo('[data-hero="4b"]', { opacity: 0 }, { opacity: 1, duration: 1 }, 1.05)
+          .fromTo('[data-hero="5"]', { opacity: 0 }, { opacity: 1, duration: 1.2 }, 1.2)
+          .fromTo('[data-hero="6"]', { opacity: 0 }, { opacity: 1, duration: 1.4 }, 1.45);
 
         // Revelados por scroll
         document.querySelectorAll('[data-reveal]').forEach(function (el) {
