@@ -193,6 +193,38 @@
     .price-card { transition: transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s ease, border-color .45s ease; }
     .price-card:hover { transform: translateY(-6px); }
 
+    /* ============================ SHOWCASE DE PLATAFORMA ============================ */
+    .shot-frame {
+      border: 1px solid rgba(153,89,216,.35);
+      background: #050d1f;
+      box-shadow: 0 50px 120px -45px rgba(0,0,0,.95), 0 0 0 1px rgba(153,89,216,.08) inset;
+    }
+    .shot-media { opacity: 0; transition: opacity .5s ease; }
+    .shot-media.ready { opacity: 1; }
+    .shot-tab {
+      border: 1px solid rgba(153,89,216,.18);
+      transition: border-color .35s ease, background-color .35s ease, color .35s ease, transform .3s cubic-bezier(.22,1,.36,1);
+    }
+    .shot-tab:hover { border-color: rgba(153,89,216,.5); color: #e2e7f1; }
+    .shot-tab[aria-selected="true"] {
+      border-color: rgba(153,89,216,.85);
+      background: rgba(153,89,216,.12);
+      color: #eaedf3;
+    }
+    .shot-panel { display: none; }
+    .shot-panel.active { display: block; }
+
+    /* ============================ LÍNEA DE TIEMPO "DOS NOCHES" ============================ */
+    .tl-track { stroke-dasharray: 100; stroke-dashoffset: 100; }
+    .tl-stop { opacity: 0; transform: translateY(8px); transition: opacity .6s ease, transform .6s cubic-bezier(.22,1,.36,1); }
+    .tl-stop.lit { opacity: 1; transform: none; }
+    .tl-dot { transition: box-shadow .6s ease, border-color .6s ease, background-color .6s ease; }
+    .tl-stop.lit .tl-dot {
+      border-color: rgba(153,89,216,.95);
+      box-shadow: 0 0 26px -2px rgba(153,89,216,.7);
+    }
+    .tl-stop.lit .tl-dot.final { background: #9959d8; }
+
     /* ============================ ACCESIBILIDAD & MOVIMIENTO ============================ */
     a:focus-visible, button:focus-visible { outline: 2px solid #9959d8; outline-offset: 4px; border-radius: 2px; }
 
@@ -263,9 +295,9 @@
       </a>
 
       <nav class="hidden lg:flex items-center gap-8 text-[12px] tracking-[0.22em] uppercase text-mist" aria-label="Navegación principal">
+        <a href="#plataforma" class="hover:text-violalight transition-colors duration-300">Plataforma</a>
         <a href="#capa-1" class="hover:text-violalight transition-colors duration-300">El Método</a>
         <a href="#simulador" class="hover:text-violalight transition-colors duration-300">Simulador</a>
-        <a href="#capas" class="hover:text-violalight transition-colors duration-300">Las Capas</a>
         <a href="#comparativa" class="hover:text-violalight transition-colors duration-300">Comparativa</a>
         <a href="#inversion" class="hover:text-violalight transition-colors duration-300">Inversión</a>
       </nav>
@@ -287,6 +319,7 @@
     <!-- Panel de menú móvil -->
     <div id="menu-panel" class="lg:hidden absolute inset-x-0 top-full bg-abyss/97 backdrop-blur-xl border-y border-viola/20">
       <nav class="max-w-6xl mx-auto px-6 py-6 flex flex-col" aria-label="Navegación móvil">
+        <a href="#plataforma" class="menu-link py-3.5 text-[13px] tracking-[0.22em] uppercase text-mist hover:text-violalight border-b border-viola/10 transition-colors">Ver la plataforma</a>
         <a href="#capa-1"     class="menu-link py-3.5 text-[13px] tracking-[0.22em] uppercase text-mist hover:text-violalight border-b border-viola/10 transition-colors">El Método</a>
         <a href="#simulador"  class="menu-link py-3.5 text-[13px] tracking-[0.22em] uppercase text-mist hover:text-violalight border-b border-viola/10 transition-colors">Simulador gratis</a>
         <a href="#capas"      class="menu-link py-3.5 text-[13px] tracking-[0.22em] uppercase text-mist hover:text-violalight border-b border-viola/10 transition-colors">Las Capas</a>
@@ -340,12 +373,14 @@
             Precio de lanzamiento con cupón de invitación · Garantía de satisfacción de 30 días
           </p>
 
-          <div data-hero="5" class="mt-14 flex flex-wrap gap-x-10 gap-y-3 text-[11px] tracking-[0.28em] uppercase text-mist/80">
-            <span>100% en español</span>
+          <div data-hero="5" class="mt-14 flex flex-wrap items-center gap-x-8 gap-y-3 text-[11px] tracking-[0.28em] uppercase text-mist/80">
+            <span>122 lecciones · 13 dominios</span>
             <span class="hidden sm:inline text-viola/50">·</span>
             <span>Clases en vivo cada 2 semanas</span>
             <span class="hidden sm:inline text-viola/50">·</span>
-            <span>Cohorte fundadora · 50 lugares</span>
+            <a href="#plataforma" class="inline-flex items-center gap-2 text-violalight hover:text-frost transition-colors">
+              <span aria-hidden="true">▶</span> Ver el programa por dentro
+            </a>
           </div>
         </div>
       </div>
@@ -354,6 +389,109 @@
       <div data-hero="6" class="absolute bottom-9 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 text-mist/70">
         <span class="text-[10px] tracking-[0.4em] uppercase">Desliza para excavar</span>
         <span class="block w-px h-12 bg-gradient-to-b from-viola/70 to-transparent"></span>
+      </div>
+    </section>
+
+    <div class="hairline max-w-4xl mx-auto" aria-hidden="true"></div>
+
+    <!-- ============================================================
+         EL PROGRAMA POR DENTRO — showcase con clips reales de la plataforma
+
+         NOTA: cuando el video demo con motion graphics esté listo, va como
+         banda full-bleed justo ARRIBA de esta sección (mismo ancho que el
+         marco). Solo hace falta el ID de Vimeo.
+    ============================================================ -->
+    <section id="plataforma" class="relative py-24 md:py-32 overflow-hidden">
+      <div class="absolute -top-20 right-0 w-[600px] h-[600px] glow-viola blur-2xl" aria-hidden="true"></div>
+
+      <div class="relative max-w-6xl mx-auto px-6">
+        <div class="max-w-3xl">
+          <p class="kicker mb-6" data-reveal>El programa por dentro</p>
+          <h2 class="font-display text-4xl md:text-6xl font-light text-frost leading-[1.1]" data-reveal>
+            Esto no es una promesa.<br /><span class="italic text-violalight">Es lo que abres al inscribirte.</span>
+          </h2>
+          <p class="mt-8 text-mist text-lg font-light leading-relaxed" data-reveal>
+            Grabado dentro de la plataforma real, no un mockup. Toca cada pestaña y mira exactamente
+            con qué vas a estudiar.
+          </p>
+        </div>
+
+        <!-- Pestañas -->
+        <div class="mt-12 flex flex-wrap gap-2.5" role="tablist" aria-label="Vistas de la plataforma" data-reveal>
+          <button type="button" role="tab" aria-selected="true"  aria-controls="shot-leccion"    id="tab-leccion"
+                  class="shot-tab px-5 py-3 text-[11px] tracking-[0.2em] uppercase text-mist">Lección</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="shot-podcast"    id="tab-podcast"
+                  class="shot-tab px-5 py-3 text-[11px] tracking-[0.2em] uppercase text-mist">Podcast</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="shot-flashcards" id="tab-flashcards"
+                  class="shot-tab px-5 py-3 text-[11px] tracking-[0.2em] uppercase text-mist">Flashcards</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="shot-quiz"       id="tab-quiz"
+                  class="shot-tab px-5 py-3 text-[11px] tracking-[0.2em] uppercase text-mist">Cuestionario</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="shot-simulador"  id="tab-simulador"
+                  class="shot-tab px-5 py-3 text-[11px] tracking-[0.2em] uppercase text-mist">Simulador final</button>
+        </div>
+
+        <!-- Marco del dispositivo -->
+        <div class="mt-6 shot-frame" data-reveal>
+          <!-- Barra superior del marco -->
+          <div class="flex items-center gap-2 px-4 py-3 border-b border-viola/15" aria-hidden="true">
+            <span class="w-2.5 h-2.5 rounded-full bg-viola/40"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-viola/25"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-viola/15"></span>
+            <span class="ml-3 text-[10px] tracking-[0.22em] uppercase text-mist/60" id="shot-label">Lección · Dominio I</span>
+          </div>
+
+          <div class="relative">
+            <div class="shot-panel active" id="shot-leccion" role="tabpanel" aria-labelledby="tab-leccion">
+              <video class="shot-media w-full block" data-src="assets/showcase/leccion.webm" poster="assets/showcase/leccion.jpg"
+                     muted loop playsinline preload="none" aria-label="Vista de una lección dentro de la plataforma"></video>
+            </div>
+            <div class="shot-panel" id="shot-podcast" role="tabpanel" aria-labelledby="tab-podcast">
+              <video class="shot-media w-full block" data-src="assets/showcase/podcast.webm" poster="assets/showcase/podcast.jpg"
+                     muted loop playsinline preload="none" aria-label="Podcast de refuerzo del dominio"></video>
+            </div>
+            <div class="shot-panel" id="shot-flashcards" role="tabpanel" aria-labelledby="tab-flashcards">
+              <video class="shot-media w-full block" data-src="assets/showcase/flashcards.webm" poster="assets/showcase/flashcards.jpg"
+                     muted loop playsinline preload="none" aria-label="Aplicación de flashcards con seguimiento de dominio"></video>
+            </div>
+            <div class="shot-panel" id="shot-quiz" role="tabpanel" aria-labelledby="tab-quiz">
+              <video class="shot-media w-full block" data-src="assets/showcase/quiz.webm" poster="assets/showcase/quiz.jpg"
+                     muted loop playsinline preload="none" aria-label="Cuestionario por módulo con explicaciones"></video>
+            </div>
+            <div class="shot-panel" id="shot-simulador" role="tabpanel" aria-labelledby="tab-simulador">
+              <video class="shot-media w-full block" data-src="assets/showcase/simulador.webm" poster="assets/showcase/simulador.jpg"
+                     muted loop playsinline preload="none" aria-label="Simulador final estilo examen"></video>
+            </div>
+          </div>
+        </div>
+
+        <!-- Descripción de la vista activa -->
+        <div class="mt-7 max-w-3xl" data-reveal>
+          <p class="text-mist font-light leading-relaxed text-[17px]" id="shot-desc">
+            Cada lección trae tablas comparativas, <span class="text-bone">ganchos de memoria</span> bilingües,
+            las <span class="text-bone">respuestas incorrectas comunes</span> que te van a poner en el examen,
+            y un checklist final antes del cuestionario. Videos de 6 a 10 minutos.
+          </p>
+        </div>
+
+        <!-- Números reales del programa -->
+        <div class="mt-14 grid grid-cols-2 md:grid-cols-4 gap-px bg-viola/15 border border-viola/15" data-reveal>
+          <div class="bg-abyss px-6 py-8 text-center">
+            <p class="font-display text-4xl font-extralight text-violalight">122</p>
+            <p class="text-[9px] tracking-[0.25em] uppercase text-mist mt-2.5">lecciones y recursos</p>
+          </div>
+          <div class="bg-abyss px-6 py-8 text-center">
+            <p class="font-display text-4xl font-extralight text-violalight">13</p>
+            <p class="text-[9px] tracking-[0.25em] uppercase text-mist mt-2.5">dominios del examen</p>
+          </div>
+          <div class="bg-abyss px-6 py-8 text-center">
+            <p class="font-display text-4xl font-extralight text-violalight">225</p>
+            <p class="text-[9px] tracking-[0.25em] uppercase text-mist mt-2.5">preguntas en el banco</p>
+          </div>
+          <div class="bg-abyss px-6 py-8 text-center">
+            <p class="font-display text-4xl font-extralight text-violalight">5<span class="text-2xl">+ h</span></p>
+            <p class="text-[9px] tracking-[0.25em] uppercase text-mist mt-2.5">de video, más clases en vivo</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -462,22 +600,53 @@
             </div>
           </div>
 
-          <!-- Sala de proyección: video de Vimeo -->
-          <figure data-reveal data-reveal-delay="0.15">
-            <div class="relative border border-viola/25 p-2 md:p-3 bg-abyss shadow-[0_40px_90px_-30px_rgba(0,0,0,.9)]">
-              <div style="padding:56.25% 0 0 0;position:relative;">
-                <iframe src="https://player.vimeo.com/video/1207081306?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-                        frameborder="0"
-                        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin"
-                        style="position:absolute;top:0;left:0;width:100%;height:100%;"
-                        title="Por qué creé este curso — Jesus, Alleanza Academy"></iframe>
+          <!-- Línea de tiempo: de agendar el examen a aprobarlo -->
+          <figure id="timeline" class="relative pl-12 md:pl-14" data-reveal data-reveal-delay="0.15">
+            <!-- Riel vertical que se dibuja al hacer scroll -->
+            <svg class="absolute left-[13px] md:left-[15px] top-2 h-[calc(100%-1rem)] w-[2px]" preserveAspectRatio="none" viewBox="0 0 2 100" aria-hidden="true">
+              <line x1="1" y1="0" x2="1" y2="100" stroke="rgba(153,89,216,.15)" stroke-width="2" />
+              <line id="tl-line" class="tl-track" x1="1" y1="0" x2="1" y2="100" stroke="rgba(153,89,216,.9)" stroke-width="2" pathLength="100" />
+            </svg>
+
+            <figcaption class="text-[10px] tracking-[0.3em] uppercase text-viola mb-8">Cronología real</figcaption>
+
+            <div class="space-y-9">
+              <div class="tl-stop relative">
+                <span class="tl-dot absolute -left-12 md:-left-14 top-1 w-7 h-7 rounded-full border border-viola/40 bg-abyss" aria-hidden="true"></span>
+                <p class="text-[10px] tracking-[0.28em] uppercase text-mist mb-1.5">Miércoles</p>
+                <p class="text-frost font-light text-lg leading-snug">Agendé el examen.</p>
+                <p class="text-mist/75 font-light text-[15px] mt-1.5">Sin curso pagado, sin material actualizado.</p>
+              </div>
+
+              <div class="tl-stop relative">
+                <span class="tl-dot absolute -left-12 md:-left-14 top-1 w-7 h-7 rounded-full border border-viola/40 bg-abyss" aria-hidden="true"></span>
+                <p class="text-[10px] tracking-[0.28em] uppercase text-mist mb-1.5">Jueves · Noche 1</p>
+                <p class="text-frost font-light text-lg leading-snug">Construí el método.</p>
+                <p class="text-mist/75 font-light text-[15px] mt-1.5">Investigué qué se examina de verdad y descarté todo lo demás.</p>
+              </div>
+
+              <div class="tl-stop relative">
+                <span class="tl-dot absolute -left-12 md:-left-14 top-1 w-7 h-7 rounded-full border border-viola/40 bg-abyss" aria-hidden="true"></span>
+                <p class="text-[10px] tracking-[0.28em] uppercase text-mist mb-1.5">Viernes · Noche 2</p>
+                <p class="text-frost font-light text-lg leading-snug">Estudié solo eso.</p>
+                <p class="text-mist/75 font-light text-[15px] mt-1.5">Preguntas de práctica hasta que las respuestas salían solas.</p>
+              </div>
+
+              <div class="tl-stop relative">
+                <span class="tl-dot final absolute -left-12 md:-left-14 top-1 w-7 h-7 rounded-full border border-viola/40 bg-abyss" aria-hidden="true"></span>
+                <p class="text-[10px] tracking-[0.28em] uppercase text-violalight mb-1.5">Viernes · 3:30 pm</p>
+                <p class="text-frost font-light text-lg leading-snug">Presenté el examen.</p>
+                <div class="mt-4 inline-flex items-stretch border border-viola/45 bg-ink/60">
+                  <span class="px-5 py-3.5 border-r border-viola/25">
+                    <span class="block font-display text-3xl font-extralight text-violalight leading-none">72</span>
+                    <span class="block text-[9px] tracking-[0.25em] uppercase text-mist mt-1.5">puntos</span>
+                  </span>
+                  <span class="px-5 py-3.5 flex items-center">
+                    <span class="text-[11px] tracking-[0.25em] uppercase text-[#1dd4b7]">Aprobado · 1<span class="lowercase">er</span> intento</span>
+                  </span>
+                </div>
               </div>
             </div>
-            <figcaption class="mt-5 flex items-center justify-between text-[11px] tracking-[0.28em] uppercase text-mist">
-              <span>La historia · 2 minutos</span>
-              <span class="text-viola">Jesús E. Guerra · Lic. en Texas</span>
-            </figcaption>
           </figure>
         </div>
 
@@ -581,8 +750,8 @@
               </button>
             </div>
             <p class="mt-7 text-[13px] text-mist/70 font-light max-w-lg mx-auto leading-relaxed">
-              El programa incluye <span class="text-bone">100+ preguntas como estas</span>, organizadas por tema y dificultad,
-              con simulacros cronometrados completos y un diagnóstico que te dice en qué tema estás débil.
+              El programa incluye un banco de <span class="text-bone">225 preguntas como estas</span>, filtrables por dominio y dificultad,
+              más un simulador final de hasta 150 preguntas cronometradas y un Readiness Score que te dice si ya estás listo para agendar.
             </p>
           </div>
         </div>
@@ -631,14 +800,15 @@
               <div class="px-7 md:px-10 pb-9 md:pl-[104px]">
                 <div class="stratum-depth h-px w-0 bg-gradient-to-r from-viola/60 to-transparent mb-6"></div>
                 <p class="text-mist leading-relaxed font-light mb-5">
-                  Más de <span class="text-bone">50 lecciones en video, 100% en español</span> (12–15 horas en total).
-                  Cada una dura 10–15 minutos y va directo a lo que el examen realmente pregunta — sin relleno.
+                  <span class="text-bone">122 lecciones y recursos, 100% en español</span>, repartidos en 13 dominios.
+                  Los videos duran de 6 a 10 minutos y van directo a lo que el examen realmente pregunta — sin relleno.
                 </p>
                 <ul class="space-y-2.5 text-sm text-mist font-light">
                   <li class="flex gap-3"><span class="text-viola mt-px">—</span><span><strong class="text-bone font-medium">Clases en vivo cada dos semanas</strong> — presenciales en Dallas o por Zoom en vivo, para resolver tus dudas en tiempo real</span></li>
-                  <li class="flex gap-3"><span class="text-viola mt-px">—</span>Guías PDF descargables por lección</li>
-                  <li class="flex gap-3"><span class="text-viola mt-px">—</span>Subtítulos en inglés disponibles</li>
-                  <li class="flex gap-3"><span class="text-viola mt-px">—</span>Flashcards bilingües: 200+ términos español ↔ inglés</li>
+                  <li class="flex gap-3"><span class="text-viola mt-px">—</span><span><strong class="text-bone font-medium">Ganchos de memoria bilingües</strong> para no confundir productos parecidos</span></li>
+                  <li class="flex gap-3"><span class="text-viola mt-px">—</span><span><strong class="text-bone font-medium">Podcast de audio por módulo</strong> — repasa mientras conduces</span></li>
+                  <li class="flex gap-3"><span class="text-viola mt-px">—</span>Resumen visual por dominio y guías descargables</li>
+                  <li class="flex gap-3"><span class="text-viola mt-px">—</span>Flashcards bilingües por dominio, con seguimiento de dominio</li>
                 </ul>
               </div>
             </div>
@@ -692,9 +862,10 @@
                   Prioridades claras para invertir tus horas donde rinden.
                 </p>
                 <ul class="space-y-2.5 text-sm text-mist font-light">
-                  <li class="flex gap-3"><span class="text-viola mt-px">—</span>Guía “Lo que siempre viene en el examen” — los temas de mayor frecuencia en una página</li>
-                  <li class="flex gap-3"><span class="text-viola mt-px">—</span>Banco de 100+ preguntas organizadas por tema y dificultad</li>
-                  <li class="flex gap-3"><span class="text-viola mt-px">—</span>Explicaciones de por qué cada respuesta es correcta o incorrecta</li>
+                  <li class="flex gap-3"><span class="text-viola mt-px">—</span><span><strong class="text-bone font-medium">“Respuestas incorrectas comunes”</strong> en cada lección — las trampas exactas que te van a poner</span></li>
+                  <li class="flex gap-3"><span class="text-viola mt-px">—</span>Checklist antes de cada cuestionario y checklist para el día del examen</li>
+                  <li class="flex gap-3"><span class="text-viola mt-px">—</span>Banco de <strong class="text-bone font-medium">225 preguntas</strong> filtrables por dominio y dificultad</li>
+                  <li class="flex gap-3"><span class="text-viola mt-px">—</span>Ruta de estudio guiada para quien empieza de cero</li>
                 </ul>
               </div>
             </div>
@@ -721,9 +892,9 @@
                   te enfocas en eso y recuperas los puntos perdidos — los que deciden si apruebas.
                 </p>
                 <ul class="space-y-2.5 text-sm text-mist font-light">
-                  <li class="flex gap-3"><span class="text-viola mt-px">—</span>Simulacros completos cronometrados en condiciones de examen</li>
-                  <li class="flex gap-3"><span class="text-viola mt-px">—</span>Diagnóstico por tema: qué fallaste y dónde recuperar puntos</li>
-                  <li class="flex gap-3"><span class="text-viola mt-px">—</span>App de quiz con repetición espaciada que te recuerda cuándo repasar</li>
+                  <li class="flex gap-3"><span class="text-viola mt-px">—</span><strong class="text-bone font-medium">Simulador final estilo examen</strong> — hasta 150 preguntas cronometradas de una sola corrida</li>
+                  <li class="flex gap-3"><span class="text-viola mt-px">—</span><span><strong class="text-bone font-medium">Readiness Score</strong>: un número que te dice si ya estás listo para agendar</span></li>
+                  <li class="flex gap-3"><span class="text-viola mt-px">—</span>Cuestionario por módulo con explicación de cada opción, correcta e incorrecta</li>
                   <li class="flex gap-3"><span class="text-viola mt-px">—</span>Q&amp;A directo con Jesus, en español, respuesta en menos de 24 horas</li>
                 </ul>
               </div>
@@ -1106,8 +1277,26 @@
             </div>
           </div>
 
+          <!-- Mensaje de la cofundadora -->
+          <figure class="mt-12" data-reveal>
+            <figcaption class="flex flex-wrap items-center justify-between gap-3 mb-5">
+              <span class="text-[10px] tracking-[0.3em] uppercase text-[#04c0fe]">Mensaje de Cynthia Villard · Cofundadora</span>
+              <span class="text-[10px] tracking-[0.28em] uppercase text-mist">2 minutos</span>
+            </figcaption>
+            <div class="relative border border-[#04c0fe]/30 p-2 md:p-2.5 bg-abyss shadow-[0_40px_90px_-35px_rgba(4,192,254,.35)]">
+              <div style="padding:56.25% 0 0 0;position:relative;">
+                <iframe src="https://player.vimeo.com/video/1207081306?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+                        frameborder="0"
+                        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        style="position:absolute;top:0;left:0;width:100%;height:100%;"
+                        title="Mensaje de Cynthia Villard, cofundadora de Alleanza Insurance Corp"></iframe>
+              </div>
+            </div>
+          </figure>
+
           <!-- Datos de la corporación -->
-          <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-px bg-[#04c0fe]/20 border border-[#04c0fe]/20">
+          <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-px bg-[#04c0fe]/20 border border-[#04c0fe]/20">
             <div class="bg-abyss px-5 py-7 text-center">
               <p class="font-display text-3xl font-extralight text-[#04c0fe]">2019</p>
               <p class="text-[9px] tracking-[0.25em] uppercase text-mist mt-2">Fundada en Texas</p>
@@ -1185,11 +1374,13 @@
             <div class="hairline my-8"></div>
             <ul class="space-y-3 text-[15px] text-mist font-light flex-1">
               <li class="flex gap-3"><span class="text-viola">—</span><span class="text-bone">Las 4 líneas incluidas: Vida, Salud, Accidentes y General Lines</span></li>
-              <li class="flex gap-3"><span class="text-viola">—</span>50+ lecciones en video en español (12–15 h)</li>
+              <li class="flex gap-3"><span class="text-viola">—</span>122 lecciones y recursos en español · 13 dominios · 5+ h de video</li>
               <li class="flex gap-3"><span class="text-viola">—</span>Clases en vivo cada 2 semanas · Dallas o Zoom</li>
               <li class="flex gap-3"><span class="text-viola">—</span>Simulacros cronometrados en condiciones de examen real</li>
-              <li class="flex gap-3"><span class="text-viola">—</span>Banco de 100+ preguntas con explicaciones</li>
-              <li class="flex gap-3"><span class="text-viola">—</span>200+ flashcards bilingües</li>
+              <li class="flex gap-3"><span class="text-viola">—</span>Banco de 225 preguntas + simulador final de 150</li>
+              <li class="flex gap-3"><span class="text-viola">—</span>Readiness Score para saber si ya estás listo</li>
+              <li class="flex gap-3"><span class="text-viola">—</span>Podcast de audio y resumen visual por módulo</li>
+              <li class="flex gap-3"><span class="text-viola">—</span>Flashcards bilingües con seguimiento de dominio</li>
               <li class="flex gap-3"><span class="text-viola">—</span>Q&amp;A con Jesus · respuesta en &lt; 24 h</li>
               <li class="flex gap-3"><span class="text-viola">—</span>Guía “Lo que siempre viene en el examen”</li>
             </ul>
@@ -1284,7 +1475,7 @@
               <span class="font-display text-xl md:text-[22px] text-bone">¿Cuánto tiempo necesito estudiar por semana?</span>
               <span class="faq-cross text-viola text-xl font-light shrink-0" aria-hidden="true">+</span>
             </button></h3>
-            <div id="faq-2" class="faq-panel" role="region"><p class="pb-7 pr-10 text-mist font-light leading-relaxed">Con 25–30 minutos al día, 4–5 días por semana (unas 4–6 horas semanales), el programa está diseñado para completarse en unas 3 semanas. Las lecciones duran 10–15 minutos precisamente para caber en tu hora de almuerzo o el trayecto al trabajo.</p></div>
+            <div id="faq-2" class="faq-panel" role="region"><p class="pb-7 pr-10 text-mist font-light leading-relaxed">Con 25–30 minutos al día, 4–5 días por semana (unas 4–6 horas semanales), el programa está diseñado para completarse en unas 3 semanas. Los videos duran de 6 a 10 minutos precisamente para caber en tu hora de almuerzo o el trayecto al trabajo — y si prefieres escuchar, cada módulo trae su podcast de audio.</p></div>
           </div>
 
           <div class="faq-item" data-open="false">
@@ -1622,6 +1813,143 @@
           sync();
         }, { threshold: [0, 0.15, 0.5] });
         [pricing, closing].forEach(function (el) { if (el) offerObserver.observe(el); });
+      })();
+
+      /* ==========================================================
+         SHOWCASE DE PLATAFORMA — pestañas con clips reales
+         Los videos se cargan solo cuando su pestaña se activa (o cuando
+         la sección entra en pantalla), para no pesar en la carga inicial.
+      ========================================================== */
+      (function showcase() {
+        var tabs = Array.prototype.slice.call(document.querySelectorAll('.shot-tab'));
+        if (!tabs.length) return;
+
+        var label = document.getElementById('shot-label');
+        var desc = document.getElementById('shot-desc');
+
+        var COPY = {
+          'shot-leccion': {
+            label: 'Lección · Dominio I',
+            html: 'Cada lección trae tablas comparativas, <span class="text-bone">ganchos de memoria</span> bilingües, ' +
+                  'las <span class="text-bone">respuestas incorrectas comunes</span> que te van a poner en el examen, ' +
+                  'y un checklist final antes del cuestionario. Videos de 6 a 10 minutos.'
+          },
+          'shot-podcast': {
+            label: 'Podcast de refuerzo · por módulo',
+            html: 'Cada módulo trae su <span class="text-bone">podcast de audio</span> de unos 15 minutos. ' +
+                  'Es el repaso que haces manejando al trabajo, sin pantalla y sin manos — el mismo contenido, en formato escucha.'
+          },
+          'shot-flashcards': {
+            label: 'Flashcards · mazo por dominio',
+            html: 'Un mazo por cada dominio, en español ↔ inglés. La app <span class="text-bone">recuerda qué dominaste ' +
+                  'y qué debes repasar</span> (verde y rojo), baraja el orden y funciona con atajos de teclado para sesiones rápidas.'
+          },
+          'shot-quiz': {
+            label: 'Cuestionario · por módulo',
+            html: 'Al terminar cada módulo, un cuestionario cronometrado. Lo importante viene después: ' +
+                  '<span class="text-bone">te explica cada opción</span> — por qué la correcta lo es y por qué cada distractor no, ' +
+                  'citando la regulación cuando aplica.'
+          },
+          'shot-simulador': {
+            label: 'Simulador final · estilo examen',
+            html: 'Banco de <span class="text-bone">225 preguntas</span> filtrables por dominio y dificultad, con temporizador opcional. ' +
+                  'El simulador final corre hasta 150 preguntas seguidas y te devuelve un <span class="text-bone">Readiness Score</span>: ' +
+                  'el número que te dice si ya puedes agendar tu examen.'
+          }
+        };
+
+        function loadVideo(panel) {
+          var v = panel.querySelector('video[data-src]');
+          if (!v) return null;
+          if (!v.src) {
+            v.src = v.getAttribute('data-src');
+            v.addEventListener('loadeddata', function () { v.classList.add('ready'); }, { once: true });
+          } else {
+            v.classList.add('ready');
+          }
+          return v;
+        }
+
+        function activate(tab) {
+          tabs.forEach(function (t) {
+            var isActive = t === tab;
+            t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            var panel = document.getElementById(t.getAttribute('aria-controls'));
+            if (!panel) return;
+            panel.classList.toggle('active', isActive);
+            var vid = panel.querySelector('video');
+            if (isActive) {
+              var v = loadVideo(panel);
+              if (v && !reduced) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+            } else if (vid) {
+              vid.pause();
+            }
+          });
+          var copy = COPY[tab.getAttribute('aria-controls')];
+          if (copy) { label.textContent = copy.label; desc.innerHTML = copy.html; }
+        }
+
+        tabs.forEach(function (tab) {
+          tab.addEventListener('click', function () { activate(tab); });
+          // Navegación con flechas entre pestañas
+          tab.addEventListener('keydown', function (e) {
+            var i = tabs.indexOf(tab);
+            var next = e.key === 'ArrowRight' ? tabs[(i + 1) % tabs.length]
+                     : e.key === 'ArrowLeft'  ? tabs[(i - 1 + tabs.length) % tabs.length] : null;
+            if (next) { e.preventDefault(); next.focus(); activate(next); }
+          });
+        });
+
+        // Carga el primer clip cuando la sección se acerca a pantalla
+        var section = document.getElementById('plataforma');
+        if (section && 'IntersectionObserver' in window) {
+          new IntersectionObserver(function (entries, obs) {
+            if (entries[0].isIntersecting) {
+              var first = document.querySelector('.shot-panel.active');
+              if (first) {
+                var v = loadVideo(first);
+                if (v && !reduced) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+              }
+              obs.disconnect();
+            }
+          }, { rootMargin: '300px' }).observe(section);
+        }
+      })();
+
+      /* ==========================================================
+         LÍNEA DE TIEMPO "DOS NOCHES" — se dibuja al hacer scroll
+      ========================================================== */
+      (function timeline() {
+        var stops = Array.prototype.slice.call(document.querySelectorAll('#timeline .tl-stop'));
+        var line = document.getElementById('tl-line');
+        if (!stops.length) return;
+
+        if (reduced || !('IntersectionObserver' in window)) {
+          stops.forEach(function (s) { s.classList.add('lit'); });
+          if (line) line.style.strokeDashoffset = 0;
+          return;
+        }
+
+        stops.forEach(function (stop, i) {
+          new IntersectionObserver(function (entries, obs) {
+            if (entries[0].isIntersecting) {
+              setTimeout(function () { stop.classList.add('lit'); }, i * 160);
+              obs.disconnect();
+            }
+          }, { threshold: 0.5 }).observe(stop);
+        });
+
+        if (line && hasGsap) {
+          gsap.to(line, {
+            strokeDashoffset: 0, ease: 'none',
+            scrollTrigger: { trigger: '#timeline', start: 'top 78%', end: 'bottom 65%', scrub: 0.5 }
+          });
+        } else if (line) {
+          line.style.transition = 'stroke-dashoffset 1.6s ease';
+          new IntersectionObserver(function (entries, obs) {
+            if (entries[0].isIntersecting) { line.style.strokeDashoffset = 0; obs.disconnect(); }
+          }, { threshold: 0.2 }).observe(document.getElementById('timeline'));
+        }
       })();
 
       /* ==========================================================

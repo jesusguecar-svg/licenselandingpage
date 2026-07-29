@@ -21,11 +21,17 @@ jobs:
 
       # Pages sirve desde la rama gh-pages; este job la mantiene
       # sincronizada con main en cada push.
+      #
+      # Las grabaciones de pantalla originales y las capturas en bruto viven en
+      # main como material fuente, pero la página no las referencia: solo usa
+      # los clips ya recortados y comprimidos de assets/showcase/. Se excluyen
+      # del sitio publicado para no servir ~118 MB muertos en cada visita.
       - name: Publish main to gh-pages
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -f assets/platform-video-*.mp4 assets/platform-*.png
           touch .nojekyll
-          git add .nojekyll
+          git add -A
           git commit -m "Deploy ${GITHUB_SHA} to gh-pages" || true
           git push origin HEAD:gh-pages --force
