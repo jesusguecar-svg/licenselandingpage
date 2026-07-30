@@ -295,8 +295,8 @@
       </a>
 
       <nav class="hidden lg:flex items-center gap-8 text-[12px] tracking-[0.22em] uppercase text-mist" aria-label="Navegación principal">
+        <a href="#demo" class="hover:text-violalight transition-colors duration-300">Demo</a>
         <a href="#plataforma" class="hover:text-violalight transition-colors duration-300">Plataforma</a>
-        <a href="#capa-1" class="hover:text-violalight transition-colors duration-300">El Método</a>
         <a href="#simulador" class="hover:text-violalight transition-colors duration-300">Simulador</a>
         <a href="#comparativa" class="hover:text-violalight transition-colors duration-300">Comparativa</a>
         <a href="#inversion" class="hover:text-violalight transition-colors duration-300">Inversión</a>
@@ -319,7 +319,8 @@
     <!-- Panel de menú móvil -->
     <div id="menu-panel" class="lg:hidden absolute inset-x-0 top-full bg-abyss/97 backdrop-blur-xl border-y border-viola/20">
       <nav class="max-w-6xl mx-auto px-6 py-6 flex flex-col" aria-label="Navegación móvil">
-        <a href="#plataforma" class="menu-link py-3.5 text-[13px] tracking-[0.22em] uppercase text-mist hover:text-violalight border-b border-viola/10 transition-colors">Ver la plataforma</a>
+        <a href="#demo"       class="menu-link py-3.5 text-[13px] tracking-[0.22em] uppercase text-mist hover:text-violalight border-b border-viola/10 transition-colors">Ver el demo</a>
+        <a href="#plataforma" class="menu-link py-3.5 text-[13px] tracking-[0.22em] uppercase text-mist hover:text-violalight border-b border-viola/10 transition-colors">La plataforma</a>
         <a href="#capa-1"     class="menu-link py-3.5 text-[13px] tracking-[0.22em] uppercase text-mist hover:text-violalight border-b border-viola/10 transition-colors">El Método</a>
         <a href="#simulador"  class="menu-link py-3.5 text-[13px] tracking-[0.22em] uppercase text-mist hover:text-violalight border-b border-viola/10 transition-colors">Simulador gratis</a>
         <a href="#capas"      class="menu-link py-3.5 text-[13px] tracking-[0.22em] uppercase text-mist hover:text-violalight border-b border-viola/10 transition-colors">Las Capas</a>
@@ -378,8 +379,8 @@
             <span class="hidden sm:inline text-viola/50">·</span>
             <span>Clases en vivo cada 2 semanas</span>
             <span class="hidden sm:inline text-viola/50">·</span>
-            <a href="#plataforma" class="inline-flex items-center gap-2 text-violalight hover:text-frost transition-colors">
-              <span aria-hidden="true">▶</span> Ver el programa por dentro
+            <a href="#demo" class="inline-flex items-center gap-2 text-violalight hover:text-frost transition-colors">
+              <span aria-hidden="true">▶</span> Ver el demo
             </a>
           </div>
         </div>
@@ -395,11 +396,48 @@
     <div class="hairline max-w-4xl mx-auto" aria-hidden="true"></div>
 
     <!-- ============================================================
-         EL PROGRAMA POR DENTRO — showcase con clips reales de la plataforma
+         DEMO — banda de proyección (video de Vimeo, carga al hacer clic)
+    ============================================================ -->
+    <section id="demo" class="relative py-20 md:py-28 overflow-hidden">
+      <!-- Atmósfera de sala de proyección -->
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-royal/12 to-transparent" aria-hidden="true"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[560px] glow-viola blur-3xl" aria-hidden="true"></div>
 
-         NOTA: cuando el video demo con motion graphics esté listo, va como
-         banda full-bleed justo ARRIBA de esta sección (mismo ancho que el
-         marco). Solo hace falta el ID de Vimeo.
+      <div class="relative max-w-5xl mx-auto px-6">
+        <div class="text-center max-w-2xl mx-auto">
+          <p class="kicker mb-6" data-reveal>Míralo en acción</p>
+          <h2 class="font-display text-4xl md:text-6xl font-light text-frost leading-[1.1]" data-reveal>
+            Así se ve<br /><span class="italic text-violalight">estudiar para aprobar.</span>
+          </h2>
+        </div>
+
+        <!-- Reproductor: portada ligera; el iframe se inserta al hacer clic -->
+        <div class="mt-12" data-reveal>
+          <div id="demo-embed" class="relative border border-viola/30 bg-abyss shadow-[0_60px_140px_-50px_rgba(0,0,0,.95)]">
+            <div style="padding:56.25% 0 0 0;position:relative;">
+              <button type="button" id="demo-play"
+                      class="group absolute inset-0 w-full h-full flex flex-col items-center justify-center gap-6 cursor-pointer"
+                      aria-label="Reproducir el demo del programa">
+                <span class="absolute inset-0 hero-pattern opacity-60" aria-hidden="true"></span>
+                <span class="absolute inset-0 bg-gradient-to-br from-royal/25 via-transparent to-viola/15" aria-hidden="true"></span>
+                <span class="relative inline-flex items-center justify-center w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-[#9959d8] to-[#7c46a6] shadow-[0_20px_50px_-12px_rgba(153,89,216,.75)] transition-transform duration-300 group-hover:scale-110" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor" class="w-9 h-9 md:w-10 md:h-10 text-white translate-x-0.5"><path d="M8 5v14l11-7z"/></svg>
+                </span>
+                <span class="relative text-[11px] tracking-[0.3em] uppercase text-mist">Reproducir el demo</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <p class="mt-8 text-center text-mist font-light leading-relaxed max-w-2xl mx-auto" data-reveal>
+          Un recorrido por el método y la plataforma. Si te queda claro en el video,
+          la pestaña de abajo te deja ver cada pieza por dentro.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         EL PROGRAMA POR DENTRO — showcase con clips reales de la plataforma
     ============================================================ -->
     <section id="plataforma" class="relative py-24 md:py-32 overflow-hidden">
       <div class="absolute -top-20 right-0 w-[600px] h-[600px] glow-viola blur-2xl" aria-hidden="true"></div>
@@ -1813,6 +1851,29 @@
           sync();
         }, { threshold: [0, 0.15, 0.5] });
         [pricing, closing].forEach(function (el) { if (el) offerObserver.observe(el); });
+      })();
+
+      /* ==========================================================
+         DEMO — carga el reproductor de Vimeo solo al hacer clic
+      ========================================================== */
+      (function demoVideo() {
+        var btn = document.getElementById('demo-play');
+        if (!btn) return;
+        btn.addEventListener('click', function () {
+          var wrap = document.getElementById('demo-embed');
+          var frame = document.createElement('div');
+          frame.style.cssText = 'padding:56.25% 0 0 0;position:relative;';
+          var iframe = document.createElement('iframe');
+          iframe.src = 'https://player.vimeo.com/video/1214392833?h=e403617d31&autoplay=1&title=0&byline=0&portrait=0';
+          iframe.setAttribute('frameborder', '0');
+          iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share');
+          iframe.setAttribute('allowfullscreen', '');
+          iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+          iframe.setAttribute('title', 'Demo del programa — Alleanza Academy');
+          iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;';
+          frame.appendChild(iframe);
+          wrap.replaceChildren(frame);
+        });
       })();
 
       /* ==========================================================
